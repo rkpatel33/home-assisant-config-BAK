@@ -1,0 +1,51 @@
+# #############################################################################
+# Home assistant start/shutdown notifications
+# #############################################################################
+- id: 'homeassistant_start_notify_ios'
+  alias: homeassistant_start_notify_ios
+  trigger:
+  - platform: homeassistant
+    event: start
+  condition: []
+  action:
+  - service: notify.ios_rishis_iphone_7
+    data:
+      title: Server
+      message: Started
+- id: 'homeassistant_shutdown_notify_ios'
+  alias: homeassistant_shutdown_notify_ios
+  trigger:
+  - platform: homeassistant
+    event: shutdown
+  condition: []
+  action:
+  - service: notify.ios_rishis_iphone_7
+    data:
+      title: Server
+      message: Shutting down
+# *****************************************************************************
+# Z-wave network events
+# *****************************************************************************
+- id: 'zwave_network_start'
+  alias: zwave_network_start
+  trigger:
+  - platform: event
+    event_type: zwave.network_start
+  condition: []
+  action:
+  - service: notify.ios_rishis_iphone_7
+    data:
+      title: Z-Wave network
+      message: Starting
+- id: 'zwave_network_ready'
+  alias: zwave network ready
+  trigger:
+  - platform: event
+    event_type: zwave.network_ready
+  condition: []
+  action:
+  - service: notify.ios_rishis_iphone_7
+    data:
+      title: Z-Wave network
+      message: Ready, starting Homekit
+  - service: homekit.start

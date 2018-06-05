@@ -1,0 +1,147 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 33.978924
+  longitude: -118.465342
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 18
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Los_Angeles
+  # Customization file
+  customize: !include customize.yaml
+
+# log everything
+logger:
+
+# Show links to resources in log and frontend
+introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  # api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+group: !include groups.yaml
+# automation: !include automations.yaml
+automation: !include_dir_merge_list automations/
+script: !include scripts.yaml
+
+# configurator
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: http://hassio.local:3218
+
+# Nest
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+
+# Homekit
+# NOTE: pass all devices through home-bridge instead
+# https://www.home-assistant.io/components/homekit/
+homekit:
+  # see startup automations, will start on z-wave ready
+  auto_start: false
+  include_domains:
+    - climate
+    # - device_tracker
+    - input_boolean
+    - light
+    - script
+  include_entities:
+    - group.all_lights
+  exclude_entities:
+    - light.aeotec_zw099_smart_dimmer_6_level
+    - light.aeotec_zw099_smart_dimmer_6_level_2
+    - light.aeotec_zw099_smart_dimmer_6_level_3
+
+# presence based on router network presence
+device_tracker:
+  - platform: nmap_tracker
+    # iphone 7
+    hosts: 192.168.7.22
+    home_interval: 5
+    exclude:
+        # the ip of the raspi itself
+        - 192.168.7.34
+
+#ios app
+ios:
+
+# Decora wifi dimmer plug
+# light:
+#   - platform: decora_wifi
+#     username: mail@rishinyc.com
+#     password: Leviton-truck-34
+
+light:
+  - platform: group
+    name: BR lights
+    entities:
+      - light.aeotec_zw099_smart_dimmer_6_level_4
+      - light.aeotec_zw099_smart_dimmer_6_level_5
+
+zwave:
+  usb_path: /dev/ttyACM0
+  # debug: true
+
+# Dummy switch devices
+input_boolean:
+  kpcc_switch:
+    name: KPCC
+    initial: off
+    icon: mdi:panda
+  # for homekit based presence
+  me_present:
+    name: Me at home
+    icon: mdi:account

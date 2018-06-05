@@ -1,0 +1,13 @@
+.*
+!._*
+!*.yaml
+!scenes
+!.gitignore
+secrets.yaml
+known_devices.yaml
+._*
+OZW_Log.txt
+deps/
+*.log
+*.db
+*.sqlite

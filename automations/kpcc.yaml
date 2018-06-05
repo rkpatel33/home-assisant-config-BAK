@@ -1,0 +1,51 @@
+# *****************************************************************************
+# Turn on KPCC on Sonos media player
+# *****************************************************************************
+# Turn on KPCC
+- id: 'kpcc_turn_on'
+  alias: KPCC On
+  trigger:
+  - entity_id: input_boolean.kpcc_switch
+    platform: state
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  # join speakers together
+  - service: media_player.sonos_join
+    data:
+      master: media_player.bedroom
+      entity_id:
+        - media_player.livingroom
+        - media_player.bathroom
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.bedroom
+      volume_level: 0.30
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.bathroom
+      volume_level: 0.20
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.livingroom
+      volume_level: 0.20
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.bedroom
+      source: KPCC
+  - service: media_player.media_play
+    data:
+      entity_id: media_player.bedroom
+# Turn off KPCC
+- id: 'kpcc_turn_off'
+  alias: KPCC Off
+  trigger:
+  - entity_id: input_boolean.kpcc_switch
+    platform: state
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: media_player.media_pause
+    entity_id: media_player.bedroom

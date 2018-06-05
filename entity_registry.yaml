@@ -1,0 +1,196 @@
+media_player.rishis_apple_tv_4g:
+  name:
+  platform: apple_tv
+  unique_id: a8cbc6afdc16c1a10cf12748c9c3b5808e9fe75d8d6557d35a78c9183bc05c17
+remote.rishis_apple_tv_4g:
+  name:
+  platform: apple_tv
+  unique_id: a8cbc6afdc16c1a10cf12748c9c3b5808e9fe75d8d6557d35a78c9183bc05c17
+media_player.livingroom:
+  name:
+  platform: sonos
+  unique_id: RINCON_B8E9377C9F1101400
+media_player.bedroom:
+  name:
+  platform: sonos
+  unique_id: RINCON_5CAAFDF7A1AE01400
+media_player.bathroom:
+  name:
+  platform: sonos
+  unique_id: RINCON_000E58FC490601400
+climate.nest:
+  name:
+  platform: nest
+  unique_id: u1AovXjp1akUjw0jljVgY8RpAuInwn45
+sensor.rishis_iphone_7_battery_level:
+  name:
+  platform: ios
+  unique_id: level_rishis_iphone_7
+sensor.rishis_iphone_7_battery_state:
+  name:
+  platform: ios
+  unique_id: state_rishis_iphone_7
+zwave.aeotec_zw090_zstick_gen5_us:
+  name:
+  platform: zwave
+  unique_id: node-1
+sensor.alarm_type:
+  name:
+  platform: zwave
+  unique_id: 2-72057594077528065
+sensor.alarm_level:
+  name:
+  platform: zwave
+  unique_id: 2-72057594077528081
+binary_sensor.sensor:
+  name:
+  platform: zwave
+  unique_id: 2-72057594076463104
+sensor.aeotec_zw100_multisensor_6_temperature:
+  name:
+  platform: zwave
+  unique_id: 2-72057594076479506
+sensor.aeotec_zw100_multisensor_6_luminance:
+  name:
+  platform: zwave
+  unique_id: 2-72057594076479538
+sensor.aeotec_zw100_multisensor_6_relative_humidity:
+  name:
+  platform: zwave
+  unique_id: 2-72057594076479570
+sensor.aeotec_zw100_multisensor_6_ultraviolet:
+  name:
+  platform: zwave
+  unique_id: 2-72057594076479922
+sensor.aeotec_zw100_multisensor_6_sourcenodeid:
+  name:
+  platform: zwave
+  unique_id: 2-72057594077528097
+sensor.aeotec_zw100_multisensor_6_burglar:
+  name:
+  platform: zwave
+  unique_id: 2-72057594077528225
+zwave.aeotec_zw100_multisensor_6:
+  name:
+  platform: zwave
+  unique_id: node-2
+light.level:
+  name:
+  platform: zwave
+  unique_id: 3-72057594093076481
+sensor.unknown:
+  name:
+  platform: zwave
+  unique_id: 3-72057594093273090
+zwave.aeotec_zw099_smart_dimmer_6:
+  name:
+  platform: zwave
+  unique_id: node-3
+light.aeotec_zw099_smart_dimmer_6_level:
+  name:
+  platform: zwave
+  unique_id: 3-144115188131004417
+sensor.aeotec_zw099_smart_dimmer_6_power:
+  name:
+  platform: zwave
+  unique_id: 3-72057594093273218
+sensor.aeotec_zw099_smart_dimmer_6_voltage:
+  name:
+  platform: zwave
+  unique_id: 3-72057594093273346
+sensor.aeotec_zw099_smart_dimmer_6_current:
+  name:
+  platform: zwave
+  unique_id: 3-72057594093273410
+sensor.aeotec_zw099_smart_dimmer_6_previous_reading:
+  name:
+  platform: zwave
+  unique_id: 3-72057594093273106
+sensor.alarm_type_2:
+  name:
+  platform: zwave
+  unique_id: 5-72057594127859713
+sensor.alarm_level_2:
+  name:
+  platform: zwave
+  unique_id: 5-72057594127859729
+switch.switch:
+  name:
+  platform: zwave
+  unique_id: 5-72057594126614528
+sensor.aeotec_zw129_wallmote_duo_sourcenodeid:
+  name:
+  platform: zwave
+  unique_id: 5-72057594127859745
+sensor.aeotec_zw129_wallmote_duo_power_management:
+  name:
+  platform: zwave
+  unique_id: 5-72057594127859889
+zwave.aeotec_zw129_wallmote_duo:
+  name:
+  platform: zwave
+  unique_id: node-5
+zwave.aeotec_zw099_smart_dimmer_6_2:
+  name:
+  platform: zwave
+  unique_id: node-6
+zwave.aeotec_zw099_smart_dimmer_6_3:
+  name:
+  platform: zwave
+  unique_id: node-7
+light.aeotec_zw099_smart_dimmer_6_level_2:
+  name:
+  platform: zwave
+  unique_id: 6-144115188181336065
+light.aeotec_zw099_smart_dimmer_6_level_3:
+  name:
+  platform: zwave
+  unique_id: 7-144115188198113281
+sensor.aeotec_zw099_smart_dimmer_6_power_2:
+  name:
+  platform: zwave
+  unique_id: 6-72057594143604866
+light.aeotec_zw099_smart_dimmer_6_level_4:
+  name:
+  platform: zwave
+  unique_id: 6-72057594143408129
+sensor.aeotec_zw099_smart_dimmer_6_energy:
+  name:
+  platform: zwave
+  unique_id: 6-72057594143604738
+sensor.aeotec_zw099_smart_dimmer_6_voltage_2:
+  name:
+  platform: zwave
+  unique_id: 6-72057594143604994
+sensor.aeotec_zw099_smart_dimmer_6_current_2:
+  name:
+  platform: zwave
+  unique_id: 6-72057594143605058
+sensor.aeotec_zw099_smart_dimmer_6_energy_2:
+  name:
+  platform: zwave
+  unique_id: 7-72057594160381954
+light.aeotec_zw099_smart_dimmer_6_level_5:
+  name:
+  platform: zwave
+  unique_id: 7-72057594160185345
+sensor.aeotec_zw099_smart_dimmer_6_power_3:
+  name:
+  platform: zwave
+  unique_id: 7-72057594160382082
+sensor.aeotec_zw099_smart_dimmer_6_voltage_3:
+  name:
+  platform: zwave
+  unique_id: 7-72057594160382210
+sensor.aeotec_zw099_smart_dimmer_6_current_3:
+  name:
+  platform: zwave
+  unique_id: 7-72057594160382274
+sensor.aeotec_zw099_smart_dimmer_6_previous_reading_2:
+  name:
+  platform: zwave
+  unique_id: 6-72057594143604754
+sensor.aeotec_zw099_smart_dimmer_6_previous_reading_3:
+  name:
+  platform: zwave
+  unique_id: 7-72057594160381970
