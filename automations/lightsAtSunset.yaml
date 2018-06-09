@@ -21,9 +21,9 @@
     state: home
   action:
     service: light.turn_on
-    entity_id: light.level
+    entity_id: light.living_room_dimmer_5
     data:
-      entity_id: light.level
+      entity_id: light.living_room_dimmer_5
       brightness_pct: 50
 # #############################################################################
 # Turn on lamp when arrive home after sunset
@@ -43,9 +43,9 @@
     after: sunset
   action:
     - service: light.turn_on
-      entity_id: light.level
+      entity_id: light.living_room_dimmer_5
       data:
-        entity_id: light.level
+        entity_id: light.living_room_dimmer_5
         brightness_pct: 50
     - service: notify.ios_rishis_iphone_7
       data:
