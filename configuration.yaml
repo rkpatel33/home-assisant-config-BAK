@@ -14,7 +14,11 @@ homeassistant:
   customize: !include customize.yaml
 
 # log everything
+# https://www.home-assistant.io/components/logger/
 logger:
+  # default: debug
+  default: info
+  # default: critical
 
 # Show links to resources in log and frontend
 introduction:
@@ -74,6 +78,40 @@ group: !include groups.yaml
 automation: !include_dir_merge_list automations/
 script: !include scripts.yaml
 
+scene:
+  - name: Morning
+    entities:
+      light.livingroom_lamp:
+        state: on
+        brightness_pct: 50
+      media_player.bedroom:
+        state: playing
+        volume_level: 0.30
+        source: KPCC
+      media_player.bathroom:
+        volume_level: 0.20
+      media_player.livingroom:
+        volume_level: 0.20
+  - name: Bedtime
+    entities:
+      light.livingroom_lamp:
+        state: on
+        brightness_pct: 50
+      light.bedroom_lamp_left:
+        state: on
+        brightness_pct: 50
+      light.bedroom_lamp_right:
+        state: on
+        brightness_pct: 50
+      media_player.bedroom:
+        state: playing
+        volume_level: 0.30
+        source: 'Blue Moon Revisited (Song For Elvis) Radio'
+      media_player.bathroom:
+        volume_level: 0.20
+      media_player.livingroom:
+        volume_level: 0.20
+
 # configurator
 panel_iframe:
   configurator:
@@ -84,6 +122,25 @@ panel_iframe:
     title: Node-RED
     icon: mdi:sitemap
     url: http://hassio.local:1880
+
+# Aeotec z-wave usb stick
+zwave:
+  usb_path: /dev/ttyACM0
+  debug: true
+
+# https://www.home-assistant.io/components/vera/
+# vera:
+#   vera_controller_url: http://192.168.7.186:3480/
+#   # Optional to exclude devices - this is a list of vera device ids
+#   # exclude: [ 13, 14, 16, 20, 23, 72, 73, 74, 75, 76, 77, 78, 88, 89, 99]
+#   # Optional to import switches as lights - this is a list of vera device ids
+#   lights: [5]
+
+# Decora wifi dimmer plug
+# light:
+#   - platform: decora_wifi
+#     username: mail@rishinyc.com
+#     password: Leviton-truck-34
 
 # Nest
 nest:
@@ -105,9 +162,7 @@ homekit:
   include_entities:
     - group.all_lights
   exclude_entities:
-    - light.aeotec_zw099_smart_dimmer_6_level
-    - light.aeotec_zw099_smart_dimmer_6_level_2
-    - light.aeotec_zw099_smart_dimmer_6_level_3
+    # - light.aeotec_zw099_smart_dimmer_6_level
 
 # presence based on router network presence
 device_tracker:
@@ -122,30 +177,12 @@ device_tracker:
 #ios app
 ios:
 
-# Decora wifi dimmer plug
-# light:
-#   - platform: decora_wifi
-#     username: mail@rishinyc.com
-#     password: Leviton-truck-34
-
-# https://www.home-assistant.io/components/vera/
-vera:
-  vera_controller_url: http://192.168.7.186:3480/
-  # Optional to exclude devices - this is a list of vera device ids
-  # exclude: [ 13, 14, 16, 20, 23, 72, 73, 74, 75, 76, 77, 78, 88, 89, 99]
-  # Optional to import switches as lights - this is a list of vera device ids
-  # lights: [15, 17, 19, 21, 22, 24, 26, 43, 64, 70, 87]
-
 light:
   - platform: group
-    name: BR lights
+    name: Bedroom lights
     entities:
-      - light.aeotec_zw099_smart_dimmer_6_level_4
-      - light.aeotec_zw099_smart_dimmer_6_level_5
-
-zwave:
-  usb_path: /dev/ttyACM0
-  # debug: true
+      - light.bedroom_lamp_left
+      - light.bedroom_lamp_right
 
 # Dummy switch devices
 input_boolean:

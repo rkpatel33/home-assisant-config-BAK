@@ -5,8 +5,8 @@
 - id: 'kpcc_turn_on'
   alias: KPCC On
   trigger:
-  - entity_id: input_boolean.kpcc_switch
-    platform: state
+  - platform: state
+    entity_id: input_boolean.kpcc_switch
     from: 'off'
     to: 'on'
   condition: []

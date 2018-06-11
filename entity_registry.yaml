@@ -118,18 +118,18 @@ switch.switch:
   name:
   platform: zwave
   unique_id: 5-72057594126614528
-sensor.aeotec_zw129_wallmote_duo_sourcenodeid:
+sensor.wallmote_duo_bedroom_sourcenodeid:
   name:
   platform: zwave
   unique_id: 5-72057594127859745
-sensor.aeotec_zw129_wallmote_duo_power_management:
+sensor.wallmote_duo_bedroom_power_management:
   name:
   platform: zwave
   unique_id: 5-72057594127859889
-zwave.aeotec_zw129_wallmote_duo:
-  name:
+zwave.wallmote_duo_bedroom:
+  name: Wallmote duo bedroom
   platform: zwave
-  unique_id: node-5
+  unique_id: node-11
 zwave.aeotec_zw099_smart_dimmer_6_2:
   name:
   platform: zwave
@@ -194,3 +194,143 @@ sensor.aeotec_zw099_smart_dimmer_6_previous_reading_3:
   name:
   platform: zwave
   unique_id: 7-72057594160381970
+zwave.aeotec_zw099_smart_dimmer_6_4:
+  name:
+  platform: zwave
+  unique_id: node-8
+zwave.aeotec_zw099_smart_dimmer_6_5:
+  name:
+  platform: zwave
+  unique_id: node-9
+zwave.aeotec_zw099_smart_dimmer_6_6:
+  name:
+  platform: zwave
+  unique_id: node-10
+light.aeotec_zw099_smart_dimmer_6_level_6:
+  name:
+  platform: zwave
+  unique_id: 8-144115188214890497
+light.aeotec_zw099_smart_dimmer_6_level_7:
+  name:
+  platform: zwave
+  unique_id: 9-144115188231667713
+light.aeotec_zw099_smart_dimmer_6_level_8:
+  name:
+  platform: zwave
+  unique_id: 10-144115188248444929
+sensor.aeotec_zw099_smart_dimmer_6_power_4:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177159298
+sensor.aeotec_zw099_smart_dimmer_6_voltage_4:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177159426
+sensor.aeotec_zw099_smart_dimmer_6_current_4:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177159490
+sensor.aeotec_zw099_smart_dimmer_6_energy_3:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177159170
+light.livingroom_lamp:
+  name: Living room lamp
+  platform: zwave
+  unique_id: 8-72057594176962561
+sensor.aeotec_zw099_smart_dimmer_6_energy_4:
+  name:
+  platform: zwave
+  unique_id: 9-72057594193936386
+light.bedroom_lamp_left:
+  name: Bedroom lamp left
+  platform: zwave
+  unique_id: 9-72057594193739777
+sensor.aeotec_zw099_smart_dimmer_6_power_5:
+  name:
+  platform: zwave
+  unique_id: 9-72057594193936514
+sensor.aeotec_zw099_smart_dimmer_6_voltage_5:
+  name:
+  platform: zwave
+  unique_id: 9-72057594193936642
+sensor.aeotec_zw099_smart_dimmer_6_current_5:
+  name:
+  platform: zwave
+  unique_id: 9-72057594193936706
+sensor.aeotec_zw099_smart_dimmer_6_power_6:
+  name:
+  platform: zwave
+  unique_id: 10-72057594210713730
+sensor.aeotec_zw099_smart_dimmer_6_voltage_6:
+  name:
+  platform: zwave
+  unique_id: 10-72057594210713858
+sensor.aeotec_zw099_smart_dimmer_6_current_6:
+  name:
+  platform: zwave
+  unique_id: 10-72057594210713922
+sensor.aeotec_zw099_smart_dimmer_6_energy_5:
+  name:
+  platform: zwave
+  unique_id: 10-72057594210713602
+light.bedroom_lamp_right:
+  name: Bedroom lamp right
+  platform: zwave
+  unique_id: 10-72057594210516993
+sensor.aeotec_zw099_smart_dimmer_6_previous_reading_4:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177159186
+sensor.living_room_lamp_previous_reading:
+  name:
+  platform: zwave
+  unique_id: 9-72057594193936402
+sensor.aeotec_zw099_smart_dimmer_6_previous_reading_5:
+  name:
+  platform: zwave
+  unique_id: 10-72057594210713618
+sensor.wallmote_duo_bedroom_2_sourcenodeid_2:
+  name:
+  platform: zwave
+  unique_id: 11-72057594228523041
+sensor.wallmote_duo_bedroom_power_management_2:
+  name:
+  platform: zwave
+  unique_id: 11-72057594228523185
+sensor.wallmote_duo_bedroom_alarm_type:
+  name:
+  platform: zwave
+  unique_id: 11-72057594228523009
+sensor.wallmote_duo_bedroom_alarm_level:
+  name:
+  platform: zwave
+  unique_id: 11-72057594228523025
+switch.aeotec_zw129_wallmote_duo_switch:
+  name:
+  platform: zwave
+  unique_id: 11-72057594227277824
+zwave.unknown_node_12:
+  name:
+  platform: zwave
+  unique_id: node-12
+media_player.patio:
+  name:
+  platform: sonos
+  unique_id: RINCON_B8E937BE4B4C01400
+sensor.unknown_node_12_temperature_2:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244251666
+sensor.unknown_node_12_relative_humidity_2:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244251730
+sensor.unknown_node_12_luminance_2:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244251698
+sensor.unknown_node_12_ultraviolet_2:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244252082
