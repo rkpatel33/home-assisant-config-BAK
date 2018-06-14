@@ -1,8 +1,8 @@
 # #############################################################################
 # Home assistant start/shutdown notifications
 # #############################################################################
-- id: 'homeassistant_start_notify_ios'
-  alias: homeassistant_start_notify_ios
+
+- alias: homeassistant_start_notify
   trigger:
   - platform: homeassistant
     event: start
@@ -12,8 +12,12 @@
     data:
       title: Server
       message: Started
-- id: 'homeassistant_shutdown_notify_ios'
-  alias: homeassistant_shutdown_notify_ios
+  - service: notify.pushbullet
+    data:
+      message: Server started
+      target: device/chrome
+
+- alias: homeassistant_shutdown_notify
   trigger:
   - platform: homeassistant
     event: shutdown
@@ -23,11 +27,15 @@
     data:
       title: Server
       message: Shutting down
+  - service: notify.pushbullet
+    data:
+      message: Server shutting down
+      target: device/chrome
+
 # *****************************************************************************
 # Z-wave network events
 # *****************************************************************************
-- id: 'zwave_network_start'
-  alias: zwave_network_start
+- alias: zwave_network_start
   trigger:
   - platform: event
     event_type: zwave.network_start
@@ -37,8 +45,12 @@
     data:
       title: Z-Wave network
       message: Starting
-- id: 'zwave_network_ready'
-  alias: zwave network ready
+  - service: notify.pushbullet
+    data:
+      message: Z-Wave network starting
+      target: device/chrome
+
+- alias: zwave_network_ready
   trigger:
   - platform: event
     event_type: zwave.network_ready
@@ -48,4 +60,8 @@
     data:
       title: Z-Wave network
       message: Ready, starting Homekit
+  - service: notify.pushbullet
+    data:
+      message: Z-Wave network starting, starting Homekit
+      target: device/chrome
   - service: homekit.start

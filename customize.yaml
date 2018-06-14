@@ -1,14 +1,17 @@
+# KPCC switch to turn on
 input_boolean.kpcc_switch:
   homebridge_visible: true
   homebridge_name: KPCC
+
 # Hide phantom z-wave entities
-light.aeotec_zw099_smart_dimmer_6_level_6:
+zwave.bedroom_lamp_left_dimmer_level:
   hidden: true
-light.aeotec_zw099_smart_dimmer_6_level_7:
+light.bedroom_lamp_right_dimmer_level:
   hidden: true
-light.aeotec_zw099_smart_dimmer_6_level_8:
+light.living_room_dimmer_level:
   hidden: true
-# Rename lights
+
+# Rename z-wave lights
 light.livingroom_lamp:
   # friendly_name: Living room lamp
   homebridge_name: Living room lamp

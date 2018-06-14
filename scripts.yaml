@@ -1,11 +1,78 @@
 restart_ha:
-  alias: Restart HA
+  alias: Restart server
   sequence:
     - alias: Restart HA
       service: homeassistant.restart
-morning_script:
-  alias: Morning script
+
+reload_automations:
+    alias: Reload automations
+    sequence:
+      - alias: Reload Automations
+        service: automation.reload
+
+reload_core_config:
+    alias: Reload core config
+    sequence:
+      - alias: Reload core config
+        service: homeassistant.reload_core_config
+
+# *****************************************************************************
+# Mqtt commands
+# *****************************************************************************
+trigger_mqtt:
+  alias: MQTT test
   sequence:
+    - service: mqtt.publish
+      data:
+        topic: mqtt/test
+        payload: on
+
+lights_off:
+  alias: Lights off
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: lights/all
+        payload: 1
+
+evening_lights:
+  alias: Evening
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: script/lights/evening
+        payload: evening
+
+bedtime_lights:
+  alias: Bedtime
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: script/lights/bedtime
+        payload: bedtime
+
+# *****************************************************************************
+# Morning
+# *****************************************************************************
+morning_script:
+  alias: Morning
+  sequence:
+    # lights
+    - service: light.turn_on
+      entity_id: light.livingroom_lamp
+      data:
+        entity_id: light.livingroom_lamp
+        brightness_pct: 50
+    - service: light.turn_on
+      entity_id: light.bedroom_lamp_right
+      data:
+        entity_id: light.bedroom_lamp_right
+        brightness_pct: 50
+    - service: light.turn_on
+      entity_id: light.bedroom_lamp_left
+      data:
+        entity_id: light.bedroom_lamp_left
+        brightness_pct: 50
     - service: media_player.sonos_join
       data:
         master: media_player.bedroom
@@ -31,18 +98,3 @@ morning_script:
     - service: media_player.media_play
       data:
         entity_id: media_player.bedroom
-    - service: light.turn_on
-      entity_id: light.livingroom_lamp
-      data:
-        entity_id: light.livingroom_lamp
-        brightness_pct: 50
-    - service: light.turn_on
-      entity_id: light.bedroom_lamp_right
-      data:
-        entity_id: light.bedroom_lamp_right
-        brightness_pct: 50
-    - service: light.turn_on
-      entity_id: light.bedroom_lamp_left
-      data:
-        entity_id: light.bedroom_lamp_left
-        brightness_pct: 50

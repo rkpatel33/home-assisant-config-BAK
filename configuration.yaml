@@ -17,14 +17,22 @@ homeassistant:
 # https://www.home-assistant.io/components/logger/
 logger:
   # default: debug
-  default: info
-  # default: critical
+  # default: info
+  default: warning
+  logs:
+    homeassistant.components.mqtt: debug
+    homeassistant.components.homekit: debug
+    homeassistant.components.zwave: info
+    pyhap: debug
 
 # Show links to resources in log and frontend
 introduction:
 
 # Enables the frontend
 frontend:
+
+#ios app
+ios:
 
 # Enables configuration UI
 config:
@@ -78,8 +86,22 @@ group: !include groups.yaml
 automation: !include_dir_merge_list automations/
 script: !include scripts.yaml
 
+# ***************************************************************************
+# Pushbullet
+# https://www.home-assistant.io/components/notify.pushbullet/
+# ***************************************************************************
+notify:
+  # optional name for multiple services
+  - platform: pushbullet
+    name: pushbullet
+    # api_key: o.4dvKIzH7D8PeeWwQazejtYLLikha4TxV
+    api_key: !secret pushbullet_token
+
+# ***************************************************************************
+# Scenes
+# ***************************************************************************
 scene:
-  - name: Morning
+  - name: Morning scene
     entities:
       light.livingroom_lamp:
         state: on
@@ -92,7 +114,7 @@ scene:
         volume_level: 0.20
       media_player.livingroom:
         volume_level: 0.20
-  - name: Bedtime
+  - name: Bedtime scene
     entities:
       light.livingroom_lamp:
         state: on
@@ -112,7 +134,9 @@ scene:
       media_player.livingroom:
         volume_level: 0.20
 
+# ***************************************************************************
 # configurator
+# ***************************************************************************
 panel_iframe:
   configurator:
     title: Configurator
@@ -123,12 +147,23 @@ panel_iframe:
     icon: mdi:sitemap
     url: http://hassio.local:1880
 
+
+# ***************************************************************************
+# MQTT - for triggering and communicating with node-red flows
+# ***************************************************************************
+mqtt:
+  broker: core-mosquitto
+
+# ***************************************************************************
 # Aeotec z-wave usb stick
+# ***************************************************************************
 zwave:
   usb_path: /dev/ttyACM0
   debug: true
 
+# ***************************************************************************
 # https://www.home-assistant.io/components/vera/
+# ***************************************************************************
 # vera:
 #   vera_controller_url: http://192.168.7.186:3480/
 #   # Optional to exclude devices - this is a list of vera device ids
@@ -142,14 +177,18 @@ zwave:
 #     username: mail@rishinyc.com
 #     password: Leviton-truck-34
 
+# ***************************************************************************
 # Nest
+# ***************************************************************************
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
 
+# ***************************************************************************
 # Homekit
 # NOTE: pass all devices through home-bridge instead
 # https://www.home-assistant.io/components/homekit/
+# ***************************************************************************
 homekit:
   # see startup automations, will start on z-wave ready
   auto_start: false
@@ -159,12 +198,17 @@ homekit:
     - input_boolean
     - light
     - script
-  include_entities:
-    - group.all_lights
-  exclude_entities:
+  # include_entities:
+    # - group.all_lights
+    # - light.livingroom_lamp
+    # - light.bedroom_lamp_left
+    # - light.bedroom_lamp_right
+  # exclude_entities:
     # - light.aeotec_zw099_smart_dimmer_6_level
 
+# ***************************************************************************
 # presence based on router network presence
+# ***************************************************************************
 device_tracker:
   - platform: nmap_tracker
     # iphone 7
@@ -174,9 +218,9 @@ device_tracker:
         # the ip of the raspi itself
         - 192.168.7.34
 
-#ios app
-ios:
-
+# ***************************************************************************
+# grouped lights
+# ***************************************************************************
 light:
   - platform: group
     name: Bedroom lights
