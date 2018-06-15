@@ -13,6 +13,7 @@
     data:
       title: Arrived home
       message: Based on homekit automation
+
 - alias: Notify on leave home (Homekit)
   trigger:
     - platform: state
@@ -25,6 +26,7 @@
     data:
       title: Left home
       message: Based on homekit automation
+
 # #############################################################################
 # Router base leave/home notifications
 # #############################################################################
@@ -40,6 +42,7 @@
     data:
       title: Left home
       message: Based on the router (entity device_tracker.d4a33d298b4b)
+
 - alias: Notify on arrive (Router)
   trigger:
   - platform: state

@@ -2,7 +2,7 @@
 # Home assistant start/shutdown notifications
 # #############################################################################
 
-- alias: homeassistant_start_notify
+- alias: Home assistant notify
   trigger:
   - platform: homeassistant
     event: start
@@ -17,7 +17,7 @@
       message: Server started
       target: device/chrome
 
-- alias: homeassistant_shutdown_notify
+- alias: Home shutdown notify
   trigger:
   - platform: homeassistant
     event: shutdown
@@ -35,7 +35,7 @@
 # *****************************************************************************
 # Z-wave network events
 # *****************************************************************************
-- alias: zwave_network_start
+- alias: Zwave network start
   trigger:
   - platform: event
     event_type: zwave.network_start
@@ -50,7 +50,7 @@
       message: Z-Wave network starting
       target: device/chrome
 
-- alias: zwave_network_ready
+- alias: Zwave network ready
   trigger:
   - platform: event
     event_type: zwave.network_ready

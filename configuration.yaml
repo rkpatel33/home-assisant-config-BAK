@@ -18,12 +18,12 @@ homeassistant:
 logger:
   # default: debug
   # default: info
-  default: warning
+  default: info
   logs:
     homeassistant.components.mqtt: debug
     homeassistant.components.homekit: debug
-    homeassistant.components.zwave: info
     pyhap: debug
+    homeassistant.components.zwave: info
 
 # Show links to resources in log and frontend
 introduction:

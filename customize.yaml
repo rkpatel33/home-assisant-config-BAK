@@ -4,9 +4,9 @@ input_boolean.kpcc_switch:
   homebridge_name: KPCC
 
 # Hide phantom z-wave entities
-zwave.bedroom_lamp_left_dimmer_level:
-  hidden: true
 light.bedroom_lamp_right_dimmer_level:
+  hidden: true
+light.bedroom_lamp_left_dimmer_level:
   hidden: true
 light.living_room_dimmer_level:
   hidden: true

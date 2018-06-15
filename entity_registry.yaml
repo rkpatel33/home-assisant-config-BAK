@@ -174,3 +174,11 @@ sensor.unknown_node_12_ultraviolet:
   name:
   platform: zwave
   unique_id: 12-72057594244252082
+media_player.rkp_appletv_livingroom:
+  name:
+  platform: apple_tv
+  unique_id: 7eba7507c3a13923f0ba0fbfc42da4891f1a7616bfcfcbd6deeaef5ffec70133
+remote.rkp_appletv_livingroom:
+  name:
+  platform: apple_tv
+  unique_id: 7eba7507c3a13923f0ba0fbfc42da4891f1a7616bfcfcbd6deeaef5ffec70133
