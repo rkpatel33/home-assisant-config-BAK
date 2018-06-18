@@ -182,3 +182,7 @@ remote.rkp_appletv_livingroom:
   name:
   platform: apple_tv
   unique_id: 7eba7507c3a13923f0ba0fbfc42da4891f1a7616bfcfcbd6deeaef5ffec70133
+media_player.patio:
+  name:
+  platform: sonos
+  unique_id: RINCON_B8E937BE4B4C01400

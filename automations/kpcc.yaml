@@ -11,6 +11,12 @@
     to: 'on'
   condition: []
   action:
+  # turn off switch again in GUI so cab be triggered again
+  - service: mqtt.publish
+    data:
+      topic: sonos/kpcc
+      payload: null
+
   # join speakers together
   - service: media_player.sonos_join
     data:

@@ -87,9 +87,10 @@ automation: !include_dir_merge_list automations/
 script: !include scripts.yaml
 
 # ***************************************************************************
-# Pushbullet
+# Pushbullet notifications
 # https://www.home-assistant.io/components/notify.pushbullet/
 # ***************************************************************************
+
 notify:
   # optional name for multiple services
   - platform: pushbullet
@@ -99,44 +100,47 @@ notify:
 
 # ***************************************************************************
 # Scenes
+# NOTE: User scripts or mqtt -> node read automations instead
 # ***************************************************************************
-scene:
-  - name: Morning scene
-    entities:
-      light.livingroom_lamp:
-        state: on
-        brightness_pct: 50
-      media_player.bedroom:
-        state: playing
-        volume_level: 0.30
-        source: KPCC
-      media_player.bathroom:
-        volume_level: 0.20
-      media_player.livingroom:
-        volume_level: 0.20
-  - name: Bedtime scene
-    entities:
-      light.livingroom_lamp:
-        state: on
-        brightness_pct: 50
-      light.bedroom_lamp_left:
-        state: on
-        brightness_pct: 50
-      light.bedroom_lamp_right:
-        state: on
-        brightness_pct: 50
-      media_player.bedroom:
-        state: playing
-        volume_level: 0.30
-        source: 'Blue Moon Revisited (Song For Elvis) Radio'
-      media_player.bathroom:
-        volume_level: 0.20
-      media_player.livingroom:
-        volume_level: 0.20
+
+# scene:
+#   - name: Morning scene
+#     entities:
+#       light.livingroom_lamp:
+#         state: on
+#         brightness_pct: 50
+#       media_player.bedroom:
+#         state: playing
+#         volume_level: 0.30
+#         source: KPCC
+#       media_player.bathroom:
+#         volume_level: 0.20
+#       media_player.livingroom:
+#         volume_level: 0.20
+#   - name: Bedtime scene
+#     entities:
+#       light.livingroom_lamp:
+#         state: on
+#         brightness_pct: 50
+#       light.bedroom_lamp_left:
+#         state: on
+#         brightness_pct: 50
+#       light.bedroom_lamp_right:
+#         state: on
+#         brightness_pct: 50
+#       media_player.bedroom:
+#         state: playing
+#         volume_level: 0.30
+#         source: 'Blue Moon Revisited (Song For Elvis) Radio'
+#       media_player.bathroom:
+#         volume_level: 0.20
+#       media_player.livingroom:
+#         volume_level: 0.20
 
 # ***************************************************************************
-# configurator
+# Configurator
 # ***************************************************************************
+
 panel_iframe:
   configurator:
     title: Configurator
@@ -147,16 +151,17 @@ panel_iframe:
     icon: mdi:sitemap
     url: http://hassio.local:1880
 
-
 # ***************************************************************************
 # MQTT - for triggering and communicating with node-red flows
 # ***************************************************************************
+
 mqtt:
   broker: core-mosquitto
 
 # ***************************************************************************
 # Aeotec z-wave usb stick
 # ***************************************************************************
+
 zwave:
   usb_path: /dev/ttyACM0
   debug: true
