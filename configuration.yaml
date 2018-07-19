@@ -198,11 +198,13 @@ homekit:
   # see startup automations, will start on z-wave ready
   auto_start: false
   include_domains:
+    - automation
     - climate
     # - device_tracker
     - input_boolean
     - light
     - script
+    - media_player
   # include_entities:
     # - group.all_lights
     # - light.livingroom_lamp
