@@ -1,188 +1,265 @@
 light.livingroom_lamp:
+  config_entry_id:
   name: Living room lamp
   platform: zwave
   unique_id: 8-72057594176962561
 light.bedroom_lamp_left:
+  config_entry_id:
   name: Bedroom lamp left
   platform: zwave
   unique_id: 9-72057594193739777
 light.bedroom_lamp_right:
+  config_entry_id:
   name: Bedroom lamp right
   platform: zwave
   unique_id: 10-72057594210516993
 media_player.livingroom:
+  config_entry_id: ebcb36127f4e49c2a4c586e863a4b230
   name:
   platform: sonos
   unique_id: RINCON_B8E9377C9F1101400
 media_player.bedroom:
+  config_entry_id: ebcb36127f4e49c2a4c586e863a4b230
   name:
   platform: sonos
   unique_id: RINCON_5CAAFDF7A1AE01400
 media_player.bathroom:
+  config_entry_id: ebcb36127f4e49c2a4c586e863a4b230
   name:
   platform: sonos
   unique_id: RINCON_000E58FC490601400
 climate.nest:
+  config_entry_id: 158ef724b2f441919c0be6e9d7354704
   name:
   platform: nest
   unique_id: u1AovXjp1akUjw0jljVgY8RpAuInwn45
 sensor.rishis_iphone_7_battery_state:
+  config_entry_id:
   name:
   platform: ios
   unique_id: state_rishis_iphone_7
 sensor.rishis_iphone_7_battery_level:
+  config_entry_id:
   name:
   platform: ios
   unique_id: level_rishis_iphone_7
 zwave.aeotec_zstick_gen5:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: node-1
 zwave.living_room_dimmer:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: node-8
 light.living_room_dimmer_level:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 8-144115188214890497
 sensor.living_room_dimmer_energy:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 8-72057594177159170
 sensor.living_room_dimmer_previous_reading:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 8-72057594177159186
 sensor.living_room_dimmer_power:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 8-72057594177159298
 sensor.living_room_dimmer_voltage:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 8-72057594177159426
 sensor.living_room_dimmer_current:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 8-72057594177159490
 zwave.bedroom_lamp_left_dimmer:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: node-9
 light.bedroom_lamp_left_dimmer_level:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 9-144115188231667713
 sensor.bedroom_lamp_left_dimmer_energy:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 9-72057594193936386
 sensor.bedroom_lamp_left_dimmer_previous_reading:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 9-72057594193936402
 sensor.bedroom_lamp_left_dimmer_power:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 9-72057594193936514
 sensor.bedroom_lamp_left_dimmer_voltage:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 9-72057594193936642
 sensor.bedroom_lamp_left_dimmer_current:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 9-72057594193936706
 media_player.rishis_apple_tv_4g:
+  config_entry_id:
   name:
   platform: apple_tv
   unique_id: a8cbc6afdc16c1a10cf12748c9c3b5808e9fe75d8d6557d35a78c9183bc05c17
 remote.rishis_apple_tv_4g:
+  config_entry_id:
   name:
   platform: apple_tv
   unique_id: a8cbc6afdc16c1a10cf12748c9c3b5808e9fe75d8d6557d35a78c9183bc05c17
 zwave.bedroom_lamp_right_dimmer:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: node-10
 light.bedroom_lamp_right_dimmer_level:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 10-144115188248444929
 sensor.bedroom_lamp_right_dimmer_energy:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 10-72057594210713602
 sensor.bedroom_lamp_right_dimmer_previous_reading:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 10-72057594210713618
 sensor.bedroom_lamp_right_dimmer_power:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 10-72057594210713730
 sensor.bedroom_lamp_right_dimmer_voltage:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 10-72057594210713858
 sensor.bedroom_lamp_right_dimmer_current:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 10-72057594210713922
 zwave.aeotec_zw129_wallmote_duo:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: node-11
 switch.aeotec_zw129_wallmote_duo_switch:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 11-72057594227277824
 sensor.aeotec_zw129_wallmote_duo_alarm_type:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 11-72057594228523009
 sensor.aeotec_zw129_wallmote_duo_alarm_level:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 11-72057594228523025
 sensor.aeotec_zw129_wallmote_duo_sourcenodeid:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 11-72057594228523041
 sensor.aeotec_zw129_wallmote_duo_power_management:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 11-72057594228523185
 zwave.unknown_node_12:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: node-12
 sensor.unknown_node_12_temperature:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 12-72057594244251666
 sensor.unknown_node_12_relative_humidity:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 12-72057594244251730
 sensor.unknown_node_12_luminance:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 12-72057594244251698
 sensor.unknown_node_12_ultraviolet:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 12-72057594244252082
 media_player.rkp_appletv_livingroom:
+  config_entry_id:
   name:
   platform: apple_tv
   unique_id: 7eba7507c3a13923f0ba0fbfc42da4891f1a7616bfcfcbd6deeaef5ffec70133
 remote.rkp_appletv_livingroom:
+  config_entry_id:
   name:
   platform: apple_tv
   unique_id: 7eba7507c3a13923f0ba0fbfc42da4891f1a7616bfcfcbd6deeaef5ffec70133
 media_player.patio:
+  config_entry_id:
   name:
   platform: sonos
   unique_id: RINCON_B8E937BE4B4C01400
+switch.fan:
+  config_entry_id:
+  name:
+  platform: wemo
+  unique_id: 221820K0102123
+media_player.rkp_appletv_livingroom_2:
+  config_entry_id:
+  name:
+  platform: apple_tv
+  unique_id: d4b70a0721040dcb2f184df5393cbd2af0eb38d56c5488f74548a0bad5f9fa6d
+remote.rkp_appletv_livingroom_2:
+  config_entry_id:
+  name:
+  platform: apple_tv
+  unique_id: d4b70a0721040dcb2f184df5393cbd2af0eb38d56c5488f74548a0bad5f9fa6d
+media_player.rkp_appletv_livingroom_3:
+  config_entry_id:
+  name:
+  platform: apple_tv
+  unique_id: e15720fc7aa907bf88b13c583028e66aa03050628410c31abc61b195e9d13208
+remote.rkp_appletv_livingroom_3:
+  config_entry_id:
+  name:
+  platform: apple_tv
+  unique_id: e15720fc7aa907bf88b13c583028e66aa03050628410c31abc61b195e9d13208
+sensor.unknown_node_12_seismic_magnitude:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244252066

@@ -1,0 +1,21 @@
+downstairs_lights:
+  name: Downstairs lights
+  entities:
+    - light.living_room_ceiling_lights
+    - light.livingroom_lamp
+    - light.back_room
+    - light.kitchen_lights
+    - light.hallway_downstairs
+ceiling_lights:
+  name: Ceiling lights
+  entities:
+    - light.living_room_ceiling_lights
+    - light.back_room
+    - light.kitchen_lights
+    - light.hallway_downstairs
+    - light.hallway_upstairs
+hallway_lights:
+  name: Hallway lights
+  entities:
+    - light.hallway_downstairs
+    - light.hallway_upstairs

@@ -176,18 +176,22 @@ zwave:
 #   # Optional to import switches as lights - this is a list of vera device ids
 #   lights: [5]
 
-# Decora wifi dimmer plug
-# light:
-#   - platform: decora_wifi
-#     username: mail@rishinyc.com
-#     password: Leviton-truck-34
-
 # ***************************************************************************
 # Nest
 # ***************************************************************************
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
+
+# ***************************************************************************
+# Wemo
+# ***************************************************************************
+wemo:
+
+# ***************************************************************************
+# Wink (controls iHome patio switch)
+# ***************************************************************************
+wink:
 
 # ***************************************************************************
 # Homekit
@@ -234,6 +238,11 @@ light:
     entities:
       - light.bedroom_lamp_left
       - light.bedroom_lamp_right
+  # Decora wifi dimmer plug
+  # NOTE: will this work with homekit?
+  - platform: decora_wifi
+    username: mail@rishinyc.com
+    password: Leviton-truck-34
 
 # Dummy switch devices
 input_boolean:

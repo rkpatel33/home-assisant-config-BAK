@@ -27,7 +27,7 @@
   - service: media_player.volume_set
     data:
       entity_id: media_player.bedroom
-      volume_level: 0.38
+      volume_level: 0.35
   - service: media_player.volume_set
     data:
       entity_id: media_player.bathroom

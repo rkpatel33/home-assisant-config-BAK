@@ -27,6 +27,9 @@ trigger_mqtt:
         topic: mqtt/test
         payload: on
 
+# *****************************************************************************
+# Lights
+# *****************************************************************************
 lights_off:
   alias: Lights off
   sequence:
@@ -39,7 +42,7 @@ lights_off:
 # Evening
 # *****************************************************************************
 evening_lights:
-  alias: Evening
+  alias: Evening lights
   sequence:
     - service: mqtt.publish
       data:
@@ -47,35 +50,28 @@ evening_lights:
         payload: evening
 
 bedtime_lights:
-  alias: Bedtime
+  alias: Bedtime lights
   sequence:
     - service: mqtt.publish
       data:
         topic: script/lights/bedtime
         payload: bedtime
 
+morning_lights:
+  alias: Morning lights
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: script/lights/morning
+        payload: morning
+
 # *****************************************************************************
 # Morning
 # *****************************************************************************
 morning_script:
-  alias: Morning
+  alias: Morning radio
   sequence:
-    # lights
-    - service: light.turn_on
-      entity_id: light.livingroom_lamp
-      data:
-        entity_id: light.livingroom_lamp
-        brightness_pct: 50
-    - service: light.turn_on
-      entity_id: light.bedroom_lamp_right
-      data:
-        entity_id: light.bedroom_lamp_right
-        brightness_pct: 35
-    - service: light.turn_on
-      entity_id: light.bedroom_lamp_left
-      data:
-        entity_id: light.bedroom_lamp_left
-        brightness_pct: 35
+    # Sonos KPCC
     - service: media_player.sonos_join
       data:
         master: media_player.bedroom
@@ -86,6 +82,14 @@ morning_script:
       data:
         entity_id: media_player.bedroom
         volume_level: 0.30
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.bathroom
+        volume_level: 0.20
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.livingroom
+        volume_level: 0.20
     - service: media_player.select_source
       data:
         entity_id: media_player.bedroom
@@ -93,3 +97,25 @@ morning_script:
     - service: media_player.media_play
       data:
         entity_id: media_player.bedroom
+    # lights
+    - condition: sun
+      before: sunrise
+    - service: mqtt.publish
+      data:
+        topic: script/lights/morning
+        payload: morning
+    # - service: light.turn_on
+    #   entity_id: light.livingroom_lamp
+    #   data:
+    #     entity_id: light.livingroom_lamp
+    #     brightness_pct: 50
+    # - service: light.turn_on
+    #   entity_id: light.bedroom_lamp_right
+    #   data:
+    #     entity_id: light.bedroom_lamp_right
+    #     brightness_pct: 35
+    # - service: light.turn_on
+    #   entity_id: light.bedroom_lamp_left
+    #   data:
+    #     entity_id: light.bedroom_lamp_left
+    #     brightness_pct: 35

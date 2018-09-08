@@ -1,26 +1,22 @@
-# KPCC switch to turn on
 input_boolean.kpcc_switch:
   homebridge_visible: true
   homebridge_name: KPCC
-
-# Hide phantom z-wave entities
 light.bedroom_lamp_right_dimmer_level:
   hidden: true
 light.bedroom_lamp_left_dimmer_level:
   hidden: true
 light.living_room_dimmer_level:
   hidden: true
-
-# Rename z-wave lights
 light.livingroom_lamp:
-  # friendly_name: Living room lamp
   homebridge_name: Living room lamp
   homebridge_visible: true
 light.bedroom_lamp_left:
-  # friendly_name: Bedroom lamp left
   homebridge_name: Bedroom lamp left
   homebridge_visible: true
 light.bedroom_lamp_right:
-  # friendly_name: Bedroom lamp right
   homebridge_name: Bedroom lamp right
   homebridge_visible: true
+light.leviton_device_daff:
+  friendly_name: Leviton wall outlet
+light.living_room_ceiling_lights:
+  friendly_name: Living room overhead lights
