@@ -4,12 +4,12 @@ light.livingroom_lamp
 light.living_room_ceiling_lights
 light.kitchen_lights
 light.back_room
-light.hallway_downstairs
+light.stairway_downstairs
 
 # Upstairs
 light.bedroom_lamp_left
 light.bedroom_lamp_right
-light.hallway_upstairs
+light.stairway_upstairs
 switch.fan
 
 # Outside

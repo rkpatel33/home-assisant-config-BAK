@@ -17,6 +17,15 @@ reload_core_config:
         service: homeassistant.reload_core_config
 
 # *****************************************************************************
+# Reset homekit
+# *****************************************************************************
+reset_homekit_script:
+  alias: Reset homekit
+  sequence:
+    - alias: Reset homekit
+      service: shell_command.reset_homekit
+
+# *****************************************************************************
 # Mqtt commands
 # *****************************************************************************
 trigger_mqtt:

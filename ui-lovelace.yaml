@@ -12,6 +12,9 @@ background: center / cover no-repeat url("/background.png") fixed
 excluded_entities:
   - weblink.router
 views:
+  # #####################################################################
+  # Tab #1
+  # #####################################################################
     # View tab title.
   - title: Main
     # Optional unique id for direct access /lovelace/${id}
@@ -31,10 +34,10 @@ views:
           - light.living_room_ceiling_lights
           - light.kitchen_lights
           - light.back_room
-          - light.hallway_downstairs
+          - light.stairway_downstairs
           - light.bedroom_lamp_left
           - light.bedroom_lamp_right
-          - light.hallway_upstairs
+          - light.stairway_upstairs
           - switch.fan
           - switch.patio_lights
           - light.outdoor_flood_lights
@@ -43,6 +46,16 @@ views:
         card:
           type: entities
           title: Lights that are on
+        # #####################################################################
+        # Scenes
+        # #####################################################################
+      - type: entities
+        title: Scenes
+        entities:
+          - script.morning_script
+          - script.morning_lights
+          - script.evening_lights
+          - script.bedtime_lights
         # #####################################################################
         # Downstairs
         # #####################################################################
@@ -53,7 +66,7 @@ views:
         - light.living_room_ceiling_lights
         - light.kitchen_lights
         - light.back_room
-        - light.hallway_downstairs
+        - light.stairway_downstairs
         # #####################################################################
         # Upstairs
         # #####################################################################
@@ -62,7 +75,7 @@ views:
         entities:
           - light.bedroom_lamp_left
           - light.bedroom_lamp_right
-          - light.hallway_upstairs
+          - light.stairway_upstairs
         # #####################################################################
         # Other
         # #####################################################################
@@ -78,21 +91,6 @@ views:
         entities:
           - switch.patio_lights
           - light.outdoor_flood_lights
-        # #####################################################################
-        # Scenes
-        # #####################################################################
-      - type: entities
-        title: Scenes
-        entities:
-          - automation.kpcc_on
-          - script.morning_script
-          - script.morning_lights
-          - script.evening_lights
-          - script.bedtime_lights
-          - script.reload_automations
-          - script.reload_core_config
-          - script.restart_ha
-          - script.trigger_mqtt
         # #####################################################################
         # Utilities
         # #####################################################################
@@ -110,7 +108,10 @@ views:
         image: https://www.home-assistant.io/images/default-social.png
         entity: light.livingroom_lamp
 
-    # Specify a tab icon if you want the view tab to be an icon.
+  # #####################################################################
+  # Tab #2
+  # #####################################################################
+  # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:home-assistant
     # Title of the view. Will be used as the tooltip for tab icon
     title: Second view
@@ -124,9 +125,9 @@ views:
         entities:
           - light.kitchen
           - switch.ac
-          - entity: light.living_room
+          - entity: switch.patio_lights
             # Override the name to use
-            name: LR Lights
+            name: PAT Lights
 
         # The markdown card will render markdown text.
       - type: markdown
