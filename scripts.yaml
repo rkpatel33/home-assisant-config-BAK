@@ -1,3 +1,6 @@
+# *****************************************************************************
+# System actions
+# *****************************************************************************
 restart_ha:
   alias: Restart server
   sequence:
@@ -26,17 +29,6 @@ reset_homekit_script:
       service: shell_command.reset_homekit
 
 # *****************************************************************************
-# Mqtt commands
-# *****************************************************************************
-trigger_mqtt:
-  alias: MQTT test
-  sequence:
-    - service: mqtt.publish
-      data:
-        topic: mqtt/test
-        payload: on
-
-# *****************************************************************************
 # App Daemon commands
 # *****************************************************************************
 appdaemon_test:
@@ -46,50 +38,38 @@ appdaemon_test:
       event_data:
         arg1: 33
 
-bedtime_lights2:
-  alias: Bedtime lights 2 (AP)
+morning_lights:
+  alias: Morning lights
   sequence:
-    - event: BEDTIME_LIGHTS2
+    - event: MORNING_LIGHTS
       event_data:
-        arg1: 33
+        arg: none
 
-# *****************************************************************************
-# Lights
-# *****************************************************************************
-lights_off:
-  alias: Lights off
-  sequence:
-    - service: mqtt.publish
-      data:
-        topic: lights/all
-        payload: 1
-
-# *****************************************************************************
-# Evening
-# *****************************************************************************
 evening_lights:
   alias: Evening lights
   sequence:
-    - service: mqtt.publish
-      data:
-        topic: script/lights/evening
-        payload: evening
+    - event: EVENING_LIGHTS
+      event_data:
+        arg: none
 
 bedtime_lights:
   alias: Bedtime lights
   sequence:
-    - service: mqtt.publish
-      data:
-        topic: script/lights/bedtime
-        payload: bedtime
+    - event: BEDTIME_LIGHTS
+      event_data:
+        arg: none
 
-morning_lights:
-  alias: Morning lights
+
+# *****************************************************************************
+# Mqtt commands
+# *****************************************************************************
+trigger_mqtt:
+  alias: MQTT test
   sequence:
     - service: mqtt.publish
       data:
-        topic: script/lights/morning
-        payload: morning
+        topic: mqtt/test
+        payload: on
 
 # *****************************************************************************
 # Morning

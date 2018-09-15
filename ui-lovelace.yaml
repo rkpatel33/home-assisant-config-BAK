@@ -102,7 +102,6 @@ views:
           - script.reload_core_config
           - script.trigger_mqtt
           - script.appdaemon_test
-          -  script.bedtime_lights2
         # #####################################################################
         # The picture entity card will represent an entity with a picture
         # #####################################################################

@@ -2,15 +2,18 @@ HelloWorld:
   module: hello
   class: HelloWorld
 
-YoWorld:
-  module: hello
-  # class: HelloWorld
-  class: YoWorld
-
 Debug:
-  module: hello
+  module: debug
   class: Debug
 
+MorningLights:
+  module: lights
+  class: MorningLights
+
 BedtimeLights:
-  module: hello
+  module: lights
   class: BedtimeLights
+
+EveningLights:
+  module: lights
+  class: EveningLights

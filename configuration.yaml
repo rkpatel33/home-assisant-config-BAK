@@ -87,57 +87,6 @@ automation: !include_dir_merge_list automations/
 script: !include scripts.yaml
 
 # ***************************************************************************
-# Pushbullet notifications
-# https://www.home-assistant.io/components/notify.pushbullet/
-# ***************************************************************************
-
-notify:
-  # optional name for multiple services
-  - platform: pushbullet
-    name: pushbullet
-    # api_key: o.4dvKIzH7D8PeeWwQazejtYLLikha4TxV
-    api_key: !secret pushbullet_token
-
-# ***************************************************************************
-# Scenes
-# NOTE: User scripts or mqtt -> node read automations instead
-# ***************************************************************************
-
-# scene:
-#   - name: Morning scene
-#     entities:
-#       light.livingroom_lamp:
-#         state: on
-#         brightness_pct: 50
-#       media_player.bedroom:
-#         state: playing
-#         volume_level: 0.30
-#         source: KPCC
-#       media_player.bathroom:
-#         volume_level: 0.20
-#       media_player.livingroom:
-#         volume_level: 0.20
-#   - name: Bedtime scene
-#     entities:
-#       light.livingroom_lamp:
-#         state: on
-#         brightness_pct: 50
-#       light.bedroom_lamp_left:
-#         state: on
-#         brightness_pct: 50
-#       light.bedroom_lamp_right:
-#         state: on
-#         brightness_pct: 50
-#       media_player.bedroom:
-#         state: playing
-#         volume_level: 0.30
-#         source: 'Blue Moon Revisited (Song For Elvis) Radio'
-#       media_player.bathroom:
-#         volume_level: 0.20
-#       media_player.livingroom:
-#         volume_level: 0.20
-
-# ***************************************************************************
 # Configurator
 # ***************************************************************************
 
@@ -156,16 +105,25 @@ panel_iframe:
 #     url: http://hassio.local:8123/lovelace
 
 # ***************************************************************************
+# Pushbullet notifications
+# https://www.home-assistant.io/components/notify.pushbullet/
+# ***************************************************************************
+notify:
+  # optional name for multiple services
+  - platform: pushbullet
+    name: pushbullet
+    # api_key: o.4dvKIzH7D8PeeWwQazejtYLLikha4TxV
+    api_key: !secret pushbullet_token
+
+# ***************************************************************************
 # MQTT - for triggering and communicating with node-red flows
 # ***************************************************************************
-
 mqtt:
   broker: core-mosquitto
 
 # ***************************************************************************
 # Aeotec z-wave usb stick
 # ***************************************************************************
-
 zwave:
   usb_path: /dev/ttyACM0
   debug: true
@@ -256,18 +214,9 @@ light:
     username: mail@rishinyc.com
     password: Leviton-truck-34
 
-# Dummy switch devices
-input_boolean:
-  kpcc_switch:
-    name: KPCC
-    initial: off
-    icon: mdi:panda
-  # for homekit based presence
-  me_present:
-    name: Me at home
-    icon: mdi:account
-
-# Exposes service shell_command.reset_homekit
+# ***************************************************************************
+# Exposes shell command service shell_command.reset_homekit
+# ***************************************************************************
 shell_command:
   reset_homekit: rm /config/.homekit.state
 
