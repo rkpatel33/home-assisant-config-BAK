@@ -1,0 +1,16 @@
+HelloWorld:
+  module: hello
+  class: HelloWorld
+
+YoWorld:
+  module: hello
+  # class: HelloWorld
+  class: YoWorld
+
+Debug:
+  module: hello
+  class: Debug
+
+BedtimeLights:
+  module: hello
+  class: BedtimeLights

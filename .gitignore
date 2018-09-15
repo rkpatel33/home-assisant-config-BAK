@@ -11,3 +11,5 @@ deps/
 *.log
 *.db
 *.sqlite
+*.pyc
+node-red/projects/HomeAssistant-NodeRed/

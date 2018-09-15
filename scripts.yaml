@@ -37,6 +37,23 @@ trigger_mqtt:
         payload: on
 
 # *****************************************************************************
+# App Daemon commands
+# *****************************************************************************
+appdaemon_test:
+  alias: App Daemon test!
+  sequence:
+    - event: APP_TEST
+      event_data:
+        arg1: 33
+
+bedtime_lights2:
+  alias: Bedtime lights 2 (AP)
+  sequence:
+    - event: BEDTIME_LIGHTS2
+      event_data:
+        arg1: 33
+
+# *****************************************************************************
 # Lights
 # *****************************************************************************
 lights_off:

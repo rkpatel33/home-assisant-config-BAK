@@ -188,6 +188,14 @@ nest:
   client_secret: !secret nest_client_secret
 
 # ***************************************************************************
+# Cec
+# https://www.home-assistant.io/components/hdmi_cec/
+# ***************************************************************************
+hdmi_cec:
+  AppleTv: switch.hdmi_4
+  TV: switch.hdmi_0
+
+# ***************************************************************************
 # Wemo
 # ***************************************************************************
 wemo:
@@ -262,3 +270,4 @@ input_boolean:
 # Exposes service shell_command.reset_homekit
 shell_command:
   reset_homekit: rm /config/.homekit.state
+

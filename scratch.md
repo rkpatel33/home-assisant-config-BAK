@@ -27,3 +27,25 @@ script.reload_core_config
 script.restart_ha
 script.trigger_mqtt
 
+
+# CEC / Apple TV devices
+
+Service:
+hdmi_cec.power_on
+hdmi_cec.standby
+
+Devices:
+TV
+switch.hdmi_0
+AppleTv
+switch.hdmi_4
+
+```json
+{"device": "switch.hdmi_0"}
+{"device": "switch.hdmi_4"}
+
+{"up": 3}
+
+```
+
+
