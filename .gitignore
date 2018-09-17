@@ -12,4 +12,4 @@ deps/
 *.db
 *.sqlite
 *.pyc
-node-red/projects/HomeAssistant-NodeRed/
+node-red/projects/HomeAssistant-NodeRed/*
