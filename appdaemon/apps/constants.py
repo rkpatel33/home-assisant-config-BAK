@@ -3,11 +3,26 @@ Constants
 """
 
 
+class Location:
+    latitude = 33.978924
+    longitude = -118.465342
+
+
+class Keys:
+    PUSHBULLET = 'o.RLRexz1gbcc9ENsrBcbr4DuEOCmKrBqb'
+    DARKSKY = '99b117dd1eeffa3351a0fa4316997671'
+
+
 class CustomEvents:
     TEST_APP = 'APP_TEST'
     MORNING_LIGHTS = 'MORNING_LIGHTS'
     EVENING_LIGHTS = 'EVENING_LIGHTS'
     BEDTIME_LIGHTS = 'BEDTIME_LIGHTS'
+    MORNING_RADIO = 'MORNING_RADIO'
+
+
+class Events:
+    STATE_CHANGED = 'state_changed'
 
 
 class Entities:
@@ -26,3 +41,21 @@ class Entities:
     # Outside
     SWITCH__PATIO_LIGHTS = 'switch.patio_lights'
     LIGHT__OUTDOOR_FLOOD_LIGHTS = 'light.outdoor_flood_lights'
+    # Music and media
+    MEDIA_PLAYER__LIVINGROOM = 'media_player.livingroom'
+    MEDIA_PLAYER__BATHROOM = 'media_player.bathroom'
+    MEDIA_PLAYER__BEDROOM = 'media_player.bedroom'
+    # Switches
+    INPUT_BOOLEAN__TEST = 'input_boolean.test_input'
+    INPUT_BOOLEAN__KPCC = 'input_boolean.input_kpcc'
+    # Deivces
+    DEVICE__NMAPTRACKER = 'device_tracker.d4a33d298b4b'
+    DEVICE__HA_IOSAPP = 'device_tracker.rishis_iphone_7'
+
+
+class Services:
+    MEDIA_PLAYER__VOLUME_SET = 'media_player/volume_set'
+    MEDIA_PLAYER__SONOS_JOIN = 'media_player/sonos_join'
+    MEDIA_PLAYER__SELECT_SOURCE = 'media_player/select_source'
+    MEDIA_PLAYER__MEDIA_PLAY = 'media_player/media_play'
+    MEDIA_PLAYER__MEDIA_PAUSE = 'media_player/media_pause'

@@ -32,7 +32,7 @@ reset_homekit_script:
 # App Daemon commands
 # *****************************************************************************
 appdaemon_test:
-  alias: App Daemon test!
+  alias: App Daemon debug
   sequence:
     - event: APP_TEST
       event_data:
@@ -71,57 +71,3 @@ trigger_mqtt:
         topic: mqtt/test
         payload: on
 
-# *****************************************************************************
-# Morning
-# *****************************************************************************
-morning_script:
-  alias: Morning radio
-  sequence:
-    # Sonos KPCC
-    - service: media_player.sonos_join
-      data:
-        master: media_player.bedroom
-        entity_id:
-          - media_player.livingroom
-          - media_player.bathroom
-    - service: media_player.volume_set
-      data:
-        entity_id: media_player.bedroom
-        volume_level: 0.30
-    - service: media_player.volume_set
-      data:
-        entity_id: media_player.bathroom
-        volume_level: 0.20
-    - service: media_player.volume_set
-      data:
-        entity_id: media_player.livingroom
-        volume_level: 0.20
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.bedroom
-        source: KPCC
-    - service: media_player.media_play
-      data:
-        entity_id: media_player.bedroom
-    # lights
-    - condition: sun
-      before: sunrise
-    - service: mqtt.publish
-      data:
-        topic: script/lights/morning
-        payload: morning
-    # - service: light.turn_on
-    #   entity_id: light.livingroom_lamp
-    #   data:
-    #     entity_id: light.livingroom_lamp
-    #     brightness_pct: 50
-    # - service: light.turn_on
-    #   entity_id: light.bedroom_lamp_right
-    #   data:
-    #     entity_id: light.bedroom_lamp_right
-    #     brightness_pct: 35
-    # - service: light.turn_on
-    #   entity_id: light.bedroom_lamp_left
-    #   data:
-    #     entity_id: light.bedroom_lamp_left
-    #     brightness_pct: 35

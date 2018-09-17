@@ -263,3 +263,43 @@ sensor.unknown_node_12_seismic_magnitude:
   name:
   platform: zwave
   unique_id: 12-72057594244252066
+zwave.aeotec_zw099_smart_dimmer_6:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-13
+light.aeotec_zw099_smart_dimmer_6_level:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 13-144115188298776577
+light.aeotec_zw099_smart_dimmer_6_level_2:
+  config_entry_id:
+  name: Aeotec Smart Dimmer NEW
+  platform: zwave
+  unique_id: 13-72057594260848641
+sensor.aeotec_zw099_smart_dimmer_6_power:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 13-72057594261045378
+sensor.aeotec_zw099_smart_dimmer_6_energy:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 13-72057594261045250
+sensor.aeotec_zw099_smart_dimmer_6_voltage:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 13-72057594261045506
+sensor.aeotec_zw099_smart_dimmer_6_current:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 13-72057594261045570
+sensor.aeotec_zw099_smart_dimmer_6_previous_reading:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 13-72057594261045266

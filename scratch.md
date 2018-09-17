@@ -1,4 +1,4 @@
-
+1
 # Down stairs
 light.livingroom_lamp
 light.living_room_ceiling_lights
@@ -28,24 +28,22 @@ script.restart_ha
 script.trigger_mqtt
 
 
-# CEC / Apple TV devices
+# CEC / Apple TV devices / TV
 
-Service:
-hdmi_cec.power_on
-hdmi_cec.standby
-
-Devices:
-TV
-switch.hdmi_0
-AppleTv
-switch.hdmi_4
+remote.rishis_apple_tv_4g
 
 ```json
+service: hdmi_cec.power_on
+service: hdmi_cec.standby
 {"device": "switch.hdmi_0"}
-{"device": "switch.hdmi_4"}
 
-{"up": 3}
 
+Service: remote.send_command
+entity: remote.rishis_apple_tv_4g
+{
+  "entity_id": "remote.rishis_apple_tv_4g",
+  "command": "menu"
+}
 ```
 
 

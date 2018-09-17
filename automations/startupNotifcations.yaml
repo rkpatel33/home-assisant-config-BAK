@@ -1,8 +1,7 @@
 # #############################################################################
-# Home assistant start/shutdown notifications
+# Home assistant startup/shutdown notifications
 # #############################################################################
-
-- alias: Home assistant notify
+- alias: Home assistant startup notify
   trigger:
   - platform: homeassistant
     event: start
@@ -17,7 +16,7 @@
       message: Server started
       target: device/chrome
 
-- alias: Home shutdown notify
+- alias: Home assistant shutdown notify
   trigger:
   - platform: homeassistant
     event: shutdown
@@ -35,7 +34,7 @@
 # *****************************************************************************
 # Z-wave network events
 # *****************************************************************************
-- alias: Zwave network start
+- alias: Zwave network starting
   trigger:
   - platform: event
     event_type: zwave.network_start
@@ -43,7 +42,7 @@
   action:
   - service: notify.ios_rishis_iphone_7
     data:
-      title: Z-Wave network
+      title: Z-Wave
       message: Starting
   - service: notify.pushbullet
     data:
@@ -58,10 +57,15 @@
   action:
   - service: notify.ios_rishis_iphone_7
     data:
-      title: Z-Wave network
+      title: Z-Wave
       message: Ready, starting Homekit
   - service: notify.pushbullet
     data:
-      message: Z-Wave network starting, starting Homekit
+      message: Z-Wave network ready, starting Homekit
       target: device/chrome
+  # start homekit after z-wave network is ready
   - service: homekit.start
+
+
+
+# EOF

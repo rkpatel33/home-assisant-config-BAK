@@ -6,6 +6,10 @@ Debug:
   module: debug
   class: Debug
 
+Restart:
+  module: system
+  class: Restart
+
 MorningLights:
   module: lights
   class: MorningLights
@@ -17,3 +21,20 @@ BedtimeLights:
 EveningLights:
   module: lights
   class: EveningLights
+
+MorningRadio:
+  module: music
+  class: MorningRadio
+
+LightsOnArriveHome:
+  module: presence
+  class: LightsOnArriveHome
+
+LightsOnLightsAtSunset:
+  module: presence
+  class: LightsOnLightsAtSunset
+
+DewPoint:
+  module: weather
+  class: DewPoint
+

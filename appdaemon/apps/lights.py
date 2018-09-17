@@ -36,7 +36,7 @@ class MorningLights(UtilsMixin, hass.Hass):
         self.set_lights(downstairs_lights_settings)
 
         # only turn them on before sunrise
-        if self.now() < self.sunrise():
+        if self.time() < self.sunrise():
             self.set_lights(bedroom_lights_settings)
 
         self.notify("Turned on morning lights", title="Lights")
@@ -57,7 +57,7 @@ class EveningLights(UtilsMixin, hass.Hass):
         lights_settings = [
             (Entities.LIGHT__LIVINGROOM_LAMP, 50),
             (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, 50),
-            (Entities.LIGHT__KITCHEN_LIGHTS, 50),
+            (Entities.LIGHT__KITCHEN_LIGHTS, 20),
             (Entities.LIGHT__LIVINGROOM_LAMP, 50),
             (Entities.LIGHT__BACK_ROOM, 50),
             (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, 30),
@@ -67,6 +67,7 @@ class EveningLights(UtilsMixin, hass.Hass):
         ]
 
         self.set_lights(lights_settings)
+        self.turn_on(Entities.SWITCH__PATIO_LIGHTS)
         self.notify("Turned on evening lights", title="Lights")
 
 
@@ -85,7 +86,7 @@ class BedtimeLights(UtilsMixin, hass.Hass):
         lights_settings = [
             (Entities.LIGHT__LIVINGROOM_LAMP, 35),
             (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, 35),
-            (Entities.LIGHT__KITCHEN_LIGHTS, 35),
+            (Entities.LIGHT__KITCHEN_LIGHTS, 10),
             (Entities.LIGHT__LIVINGROOM_LAMP, 35),
             (Entities.LIGHT__BACK_ROOM, 35),
             (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, 30),
@@ -95,4 +96,5 @@ class BedtimeLights(UtilsMixin, hass.Hass):
         ]
 
         self.set_lights(lights_settings)
+        self.turn_on(Entities.SWITCH__PATIO_LIGHTS)
         self.notify("Turned on bedtime lights", title="Lights")

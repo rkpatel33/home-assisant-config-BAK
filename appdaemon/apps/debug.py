@@ -1,5 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
-from constants import CustomEvents
+from pushbullet import Pushbullet
+from constants import CustomEvents, Keys
 
 
 class Debug(hass.Hass):
@@ -22,3 +23,8 @@ class Debug(hass.Hass):
         self.log(data)
         self.log(kwargs)
         self.log('------------------------------------------------')
+        self.notify('Success!')
+        self.log('Success!')
+
+        pb = Pushbullet(Keys.PUSHBULLET)
+        pb.push_note('Success!', None)

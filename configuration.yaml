@@ -61,6 +61,8 @@ conversation:
 # Enables support for tracking state changes over time
 history:
 
+recorder:
+
 # View all events in a logbook
 logbook:
 
@@ -150,13 +152,13 @@ nest:
 # https://www.home-assistant.io/components/hdmi_cec/
 # ***************************************************************************
 hdmi_cec:
-  AppleTv: switch.hdmi_4
-  TV: switch.hdmi_0
+  # AppleTv: switch.hdmi_4
+  # TV: switch.hdmi_0
 
 # ***************************************************************************
 # Wemo
 # ***************************************************************************
-wemo:
+# wemo:
 
 # ***************************************************************************
 # Wink (controls iHome patio switch)
@@ -198,6 +200,7 @@ device_tracker:
     exclude:
         # the ip of the raspi itself
         - 192.168.7.34
+  - platform: bluetooth_tracker
 
 # ***************************************************************************
 # grouped lights
@@ -210,6 +213,20 @@ light:
       - light.bedroom_lamp_right
   # Decora wifi dimmer plug
   # NOTE: will this work with homekit?
+  - platform: group
+    name: Stairway lights
+    entities:
+      - light.stairway_downstairs
+      - light.stairway_upstairs
+  - platform: group
+    name: Downstairs lights
+    entities:
+      - light.livingroom_lamp
+      - light.living_room_ceiling_lights
+      - light.kitchen_lights
+      - light.back_room
+  # Decora wifi dimmer plug
+  # NOTE: will this work with homekit?
   - platform: decora_wifi
     username: mail@rishinyc.com
     password: Leviton-truck-34
@@ -219,4 +236,18 @@ light:
 # ***************************************************************************
 shell_command:
   reset_homekit: rm /config/.homekit.state
+
+
+# ***************************************************************************
+# Fake switches for app daemon scripts
+# ***************************************************************************
+input_boolean:
+  test_input:
+    name: Test input
+    # initial: off
+    # icon: mdi:car
+  input_kpcc:
+    name: KPCC
+    # initial: off
+    icon: mdi:radio
 

@@ -47,12 +47,18 @@ views:
           type: entities
           title: Lights that are on
         # #####################################################################
+        # Media player
+        # #####################################################################
+      - type: entities
+        title: Media
+        entities:
+          - input_boolean.input_kpcc
+        # #####################################################################
         # Scenes
         # #####################################################################
       - type: entities
         title: Scenes
         entities:
-          - script.morning_script
           - script.morning_lights
           - script.evening_lights
           - script.bedtime_lights
@@ -100,14 +106,13 @@ views:
           - script.restart_ha
           - script.reload_automations
           - script.reload_core_config
-          - script.trigger_mqtt
           - script.appdaemon_test
         # #####################################################################
         # The picture entity card will represent an entity with a picture
         # #####################################################################
-      - type: picture-entity
-        image: https://www.home-assistant.io/images/default-social.png
-        entity: light.livingroom_lamp
+      # - type: picture-entity
+      #   image: https://www.home-assistant.io/images/default-social.png
+      #   entity: light.livingroom_lamp
 
   # #####################################################################
   # Tab #2
