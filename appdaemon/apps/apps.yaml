@@ -30,6 +30,10 @@ LightsOnArriveHome:
   module: presence
   class: LightsOnArriveHome
 
+ReportPresence:
+  module: presence
+  class: ReportPresence
+
 LightsOnLightsAtSunset:
   module: presence
   class: LightsOnLightsAtSunset

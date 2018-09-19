@@ -36,7 +36,7 @@ class MorningLights(UtilsMixin, hass.Hass):
         self.set_lights(downstairs_lights_settings)
 
         # only turn them on before sunrise
-        if self.time() < self.sunrise():
+        if self.datetime() < self.sunrise():
             self.set_lights(bedroom_lights_settings)
 
         self.notify("Turned on morning lights", title="Lights")
