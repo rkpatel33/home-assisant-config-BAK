@@ -22,6 +22,14 @@ EveningLights:
   module: lights
   class: EveningLights
 
+EverythingOff:
+  module: lights
+  class: EverythingOff
+
+ZeroLights:
+  module: lights
+  class: ZeroLights
+
 MorningRadio:
   module: music
   class: MorningRadio

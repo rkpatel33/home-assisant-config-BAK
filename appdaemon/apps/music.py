@@ -45,6 +45,24 @@ class MorningRadio(UtilsMixin, hass.Hass):
             new="off"
         )
 
+        self.listen_event(
+            self.radio_toggle,
+            CustomEvents.TOGGLE_KPCC,
+        )
+
+    def radio_toggle(self, event_name, data, kwargs):
+        # TODO: Not working yest, need to test what comes through in the TOGGLE
+        # event
+        state = self.get_state(Entities.MEDIA_PLAYER__BEDROOM)
+        if state == 'playing':
+            self.turn_off_radio(
+                Entities.MEDIA_PLAYER__BEDROOM, None, None, None, None
+            )
+        if state == 'paused':
+            self.turn_on_radio(
+                Entities.MEDIA_PLAYER__BEDROOM, None, None, None, None
+            )
+
     def turn_off_radio(self, entity, attribute, old, new, kwargs):
         # pause
         self.log('Turned off KPCC')

@@ -18,7 +18,9 @@ class CustomEvents:
     MORNING_LIGHTS = 'MORNING_LIGHTS'
     EVENING_LIGHTS = 'EVENING_LIGHTS'
     BEDTIME_LIGHTS = 'BEDTIME_LIGHTS'
-    MORNING_RADIO = 'MORNING_RADIO'
+    ZERO_LIGHTS = 'ZERO_LIGHTS'
+    TOGGLE_KPCC = 'TOGGLE_KPCC'
+    EVERYTHING_OFF = 'EVERYTHING_OFF'
 
 
 class Events:
@@ -39,7 +41,7 @@ class Entities:
     LIGHT__STAIRWAY_DOWNSTAIRS = 'light.stairway_downstairs'
     LIGHT__STAIRWAY_UPSTAIRS = 'light.stairway_upstairs'
     # Outside
-    SWITCH__PATIO_LIGHTS = 'switch.patio_lights'
+    LIGHT__PATIO = 'light.patio_lights'
     LIGHT__OUTDOOR_FLOOD_LIGHTS = 'light.outdoor_flood_lights'
     # Music and media
     MEDIA_PLAYER__LIVINGROOM = 'media_player.livingroom'

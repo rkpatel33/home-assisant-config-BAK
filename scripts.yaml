@@ -1,6 +1,7 @@
 # *****************************************************************************
 # System actions
 # *****************************************************************************
+
 restart_ha:
   alias: Restart server
   sequence:
@@ -22,6 +23,7 @@ reload_core_config:
 # *****************************************************************************
 # Reset homekit
 # *****************************************************************************
+
 reset_homekit_script:
   alias: Reset homekit
   sequence:
@@ -31,12 +33,20 @@ reset_homekit_script:
 # *****************************************************************************
 # App Daemon commands
 # *****************************************************************************
+
 appdaemon_test:
   alias: App Daemon debug
   sequence:
     - event: APP_TEST
       event_data:
         arg1: 33
+
+kpcc_toggle:
+  alias: KPCC Toggle
+  sequence:
+    - event: TOGGLE_KPCC
+      event_data:
+        arg1: 22
 
 morning_lights:
   alias: Morning lights
@@ -59,10 +69,24 @@ bedtime_lights:
       event_data:
         arg: none
 
+zero_lights:
+  alias: Zero lights
+  sequence:
+    - event: ZERO_LIGHTS
+      event_data:
+        arg: none
+
+everything_off:
+  alias: Everything off
+  sequence:
+    - event: EVERYTHING_OFF
+      event_data:
+        arg: none
 
 # *****************************************************************************
 # Mqtt commands
 # *****************************************************************************
+
 trigger_mqtt:
   alias: MQTT test
   sequence:

@@ -39,7 +39,7 @@ views:
           - light.bedroom_lamp_right
           - light.stairway_upstairs
           - switch.fan
-          - switch.patio_lights
+          - light.patio_lights
           - light.outdoor_flood_lights
         state_filter:
           - 'on'
@@ -62,6 +62,8 @@ views:
           - script.morning_lights
           - script.evening_lights
           - script.bedtime_lights
+          - script.zero_lights
+          - script.kpcc_toggle
         # #####################################################################
         # Downstairs
         # #####################################################################
@@ -95,7 +97,7 @@ views:
       - type: entities
         title: Outside
         entities:
-          - switch.patio_lights
+          - light.patio_lights
           - light.outdoor_flood_lights
         # #####################################################################
         # Utilities
@@ -131,7 +133,7 @@ views:
         entities:
           - light.kitchen
           - switch.ac
-          - entity: switch.patio_lights
+          - entity: light.patio_lights
             # Override the name to use
             name: PAT Lights
 

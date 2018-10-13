@@ -14,6 +14,7 @@ switch.fan
 
 # Outside
 switch.patio_lights
+light.patio_lights
 light.outdoor_flood_lights
 
 # Scripts

@@ -14,8 +14,13 @@ class UtilsMixin(object):
         lights_settings: list of tuples of (entity_id, bridghtness_pct)
         """
         for entity_id, brightness_pct in lights_settings:
-            self.log(entity_id)
             self.turn_on(entity_id, brightness_pct=brightness_pct)
+            self.log(
+                'Light {entity_id} to {brightness_pct}'.format(
+                    entity_id=entity_id,
+                    brightness_pct=brightness_pct
+                )
+            )
 
     def push_bullet(self, title, body=None):
         pb = Pushbullet(Keys.PUSHBULLET)
