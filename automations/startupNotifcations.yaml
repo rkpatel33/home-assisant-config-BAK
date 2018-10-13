@@ -1,16 +1,16 @@
 # #############################################################################
 # Home assistant startup/shutdown notifications
 # #############################################################################
+
 - alias: Home assistant startup notify
   trigger:
-  - platform: homeassistant
+    platform: homeassistant
     event: start
-  condition: []
   action:
   - service: notify.ios_rishis_iphone_7
     data:
-      title: Server
-      message: Started
+      title: System
+      message: Server started
   - service: notify.pushbullet
     data:
       message: Server started
@@ -18,50 +18,48 @@
 
 - alias: Home assistant shutdown notify
   trigger:
-  - platform: homeassistant
+    platform: homeassistant
     event: shutdown
-  condition: []
   action:
   - service: notify.ios_rishis_iphone_7
     data:
-      title: Server
-      message: Shutting down
+      title: System
+      message: Server shutting down...
   - service: notify.pushbullet
     data:
-      message: Server shutting down
+      message: Server shutting down...
       target: device/chrome
 
 # *****************************************************************************
 # Z-wave network events
 # *****************************************************************************
+
 - alias: Zwave network starting
   trigger:
-  - platform: event
+    platform: event
     event_type: zwave.network_start
-  condition: []
   action:
   - service: notify.ios_rishis_iphone_7
     data:
-      title: Z-Wave
-      message: Starting
+      title: System
+      message: Z-Wave network starting...
   - service: notify.pushbullet
     data:
-      message: Z-Wave network starting
+      message: Z-Wave network starting...
       target: device/chrome
 
 - alias: Zwave network ready
   trigger:
-  - platform: event
+    platform: event
     event_type: zwave.network_ready
-  condition: []
   action:
   - service: notify.ios_rishis_iphone_7
     data:
-      title: Z-Wave
-      message: Ready, starting Homekit
+      title: System
+      message: Z-Wave network ready... starting Homekit
   - service: notify.pushbullet
     data:
-      message: Z-Wave network ready, starting Homekit
+      message: Z-Wave network ready... starting Homekit
       target: device/chrome
   # start homekit after z-wave network is ready
   - service: homekit.start

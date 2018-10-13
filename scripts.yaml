@@ -1,3 +1,4 @@
+
 # *****************************************************************************
 # System actions
 # *****************************************************************************
@@ -24,11 +25,18 @@ reload_core_config:
 # Reset homekit
 # *****************************************************************************
 
-reset_homekit_script:
-  alias: Reset homekit
+homekit_reset:
+  alias: Homekit reset
   sequence:
-    - alias: Reset homekit
+    - alias: Homekit reset
       service: shell_command.reset_homekit
+
+homekit_start:
+    alias: Homekit start
+    sequence:
+      - alias: Homekit start
+        service: homekit.start
+
 
 # *****************************************************************************
 # App Daemon commands

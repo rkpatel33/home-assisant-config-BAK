@@ -109,6 +109,8 @@ views:
           - script.reload_automations
           - script.reload_core_config
           - script.appdaemon_test
+          - script.homekit_start
+          - script.homekit_reset
         # #####################################################################
         # The picture entity card will represent an entity with a picture
         # #####################################################################
