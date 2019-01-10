@@ -60,17 +60,23 @@ class LightsOnArriveHome(UtilsMixin, hass.Hass):
             (Entities.LIGHT__LIVINGROOM_LAMP, 50),
         ]
 
-        if old == 'not_home' and new == 'home':
+        is_in_blocked_time = self.now_is_between("23:00:00", "05:00:00")
+
+        if old == 'not_home' and new == 'home' and not is_in_blocked_time:
             # turn on after sunset
             if self.sun_down():
                 self.log('Turning on lights when you arrive after sunset')
+                self.notify(
+                    'Turning on lamp and patio lights',
+                    title="Lights"
+                )
                 self.set_lights(lights_settings)
                 self.turn_on(Entities.LIGHT__PATIO)
 
 
 class LightsOnLightsAtSunset(UtilsMixin, hass.Hass):
     """
-    Turn on the lights when I get home
+    Turn on the lights if I am home
     """
     def initialize(self):
         # register event callback for on/off
@@ -81,11 +87,17 @@ class LightsOnLightsAtSunset(UtilsMixin, hass.Hass):
 
         self.log('Turning on lights at sunset')
 
+        presence_state = self.get_state(
+            entity=Entities.DEVICE__NMAPTRACKER
+        )
+
         lights_settings = [
             (Entities.LIGHT__LIVINGROOM_LAMP, 50),
             (Entities.LIGHT__PATIO, 100),
         ]
-        self.set_lights(lights_settings)
+
+        if presence_state == 'home':
+            self.set_lights(lights_settings)
 
 
 # EOF

@@ -19,8 +19,9 @@ class CustomEvents:
     EVENING_LIGHTS = 'EVENING_LIGHTS'
     BEDTIME_LIGHTS = 'BEDTIME_LIGHTS'
     ZERO_LIGHTS = 'ZERO_LIGHTS'
-    TOGGLE_KPCC = 'TOGGLE_KPCC'
     EVERYTHING_OFF = 'EVERYTHING_OFF'
+    TOGGLE_KPCC = 'TOGGLE_KPCC'
+    PATIO_LIGHTS_TOGGLE = 'PATIO_LIGHTS_TOGGLE'
 
 
 class Events:
@@ -51,8 +52,9 @@ class Entities:
     INPUT_BOOLEAN__TEST = 'input_boolean.test_input'
     INPUT_BOOLEAN__KPCC = 'input_boolean.input_kpcc'
     # Deivces
-    DEVICE__NMAPTRACKER = 'device_tracker.d4a33d298b4b'
-    DEVICE__HA_IOSAPP = 'device_tracker.rishis_iphone_7'
+    # DEVICE__NMAPTRACKER = 'device_tracker.d4a33d298b4b'
+    DEVICE__NMAPTRACKER = 'device_tracker.rishis_iphone_xs'
+    DEVICE__HA_IOSAPP = 'rishis_iphone_xs'
 
 
 class Services:

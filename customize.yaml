@@ -20,3 +20,5 @@ light.leviton_device_daff:
   friendly_name: Leviton wall outlet
 light.living_room_ceiling_lights:
   friendly_name: Living room overhead lights
+device_tracker.f8388063d3d6:
+  friendly_name: rishis_iphone_xs

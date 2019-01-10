@@ -195,12 +195,14 @@ homekit:
 device_tracker:
   - platform: nmap_tracker
     # iphone 7
-    hosts: 192.168.7.22
+    # hosts: 192.168.7.22
+    # iphone XS
+    hosts: 192.168.7.235
     home_interval: 5
     exclude:
         # the ip of the raspi itself
         - 192.168.7.34
-  - platform: bluetooth_tracker
+  # - platform: bluetooth_tracker
 
 # ***************************************************************************
 # grouped lights

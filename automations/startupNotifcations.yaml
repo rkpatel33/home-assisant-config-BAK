@@ -7,7 +7,8 @@
     platform: homeassistant
     event: start
   action:
-  - service: notify.ios_rishis_iphone_7
+  # - service: notify.ios_rishis_iphone_7
+  - service: notify.ios_rishis_iphone_xs
     data:
       title: System
       message: Server started
@@ -21,7 +22,8 @@
     platform: homeassistant
     event: shutdown
   action:
-  - service: notify.ios_rishis_iphone_7
+  # - service: notify.ios_rishis_iphone_7
+  - service: notify.ios_rishis_iphone_xs
     data:
       title: System
       message: Server shutting down...
@@ -39,7 +41,8 @@
     platform: event
     event_type: zwave.network_start
   action:
-  - service: notify.ios_rishis_iphone_7
+  # - service: notify.ios_rishis_iphone_7
+  - service: notify.ios_rishis_iphone_xs
     data:
       title: System
       message: Z-Wave network starting...
@@ -53,7 +56,8 @@
     platform: event
     event_type: zwave.network_ready
   action:
-  - service: notify.ios_rishis_iphone_7
+  # - service: notify.ios_rishis_iphone_7
+  - service: notify.ios_rishis_iphone_xs
     data:
       title: System
       message: Z-Wave network ready... starting Homekit

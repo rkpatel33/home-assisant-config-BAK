@@ -84,6 +84,13 @@ zero_lights:
       event_data:
         arg: none
 
+patio_lights_toggle:
+  alias: Patio lights toggle
+  sequence:
+    - event: PATIO_LIGHTS_TOGGLE
+      event_data:
+        arg: none
+
 everything_off:
   alias: Everything off
   sequence:

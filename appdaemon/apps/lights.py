@@ -1,10 +1,11 @@
 """
 Lights apps
 """
+import datetime
 import appdaemon.plugins.hass.hassapi as hass
+
 from constants import CustomEvents, Entities, Services
 from utils import UtilsMixin
-
 
 class MorningLights(UtilsMixin, hass.Hass):
     """
@@ -151,16 +152,15 @@ class ZeroLights(UtilsMixin, hass.Hass):
         Receive event and print log.
         """
         lights_settings = [
-            (Entities.LIGHT__LIVINGROOM_LAMP, 0),
-            (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, 0),
-            (Entities.LIGHT__KITCHEN_LIGHTS, 0),
-            (Entities.LIGHT__LIVINGROOM_LAMP, 0),
-            (Entities.LIGHT__BACK_ROOM, 0),
-            (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, 0),
-            (Entities.LIGHT__STAIRWAY_UPSTAIRS, 0),
-            (Entities.LIGHT__BEDROOM_LAMP_LEFT, 0),
-            (Entities.LIGHT__BEDROOM_LAMP_RIGHT, 0),
-            (Entities.LIGHT__PATIO, 50),
+            (Entities.LIGHT__LIVINGROOM_LAMP, 20),
+            (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, None),
+            (Entities.LIGHT__KITCHEN_LIGHTS, None),
+            (Entities.LIGHT__BACK_ROOM, None),
+            (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, None),
+            (Entities.LIGHT__STAIRWAY_UPSTAIRS, None),
+            (Entities.LIGHT__BEDROOM_LAMP_LEFT, 20),
+            (Entities.LIGHT__BEDROOM_LAMP_RIGHT, 20),
+            (Entities.LIGHT__PATIO, None),
         ]
 
         self.set_lights(lights_settings)
@@ -168,3 +168,43 @@ class ZeroLights(UtilsMixin, hass.Hass):
         self.notify("Set lights to zero", title="Lights")
 
 
+class PatioLightsToggle(UtilsMixin, hass.Hass):
+    def initialize(self):
+        # register event callback
+        self.listen_event(
+            self.handle_event,
+            CustomEvents.PATIO_LIGHTS_TOGGLE
+        )
+
+    def handle_event(self, event_name, data, kwargs):
+        """
+        Receive event and print log.
+        """
+        state = self.get_state(Entities.LIGHT__PATIO)
+        if state == 'on':
+            self.turn_off(Entities.LIGHT__PATIO)
+            self.notify("Patio lights off", title="Lights")
+        else:
+            self.turn_on(Entities.LIGHT__PATIO)
+            self.notify("Patio lights on", title="Lights")
+
+
+class FloodLightsTimer(UtilsMixin, hass.Hass):
+    def initialize(self):
+        # register event callback based on times
+        time_on = datetime.time(20, 0, 0)
+        time_off = datetime.time(7, 0, 0)
+
+        self.run_daily(self.turn_floodlights_on, time_on)
+        self.run_daily(self.turn_floodlights_off, time_off)
+
+    def turn_floodlights_on(self, kwargs):
+        self.turn_on(Entities.LIGHT__OUTDOOR_FLOOD_LIGHTS)
+        self.push_bullet(title='Turned on flood lights')
+
+    def turn_floodlights_off(self, kwargs):
+        self.turn_off(Entities.LIGHT__OUTDOOR_FLOOD_LIGHTS)
+        self.push_bullet(title='Turned off flood lights')
+
+
+# EOF
