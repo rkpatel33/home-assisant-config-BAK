@@ -7,6 +7,7 @@ import appdaemon.plugins.hass.hassapi as hass
 from constants import CustomEvents, Entities, Services
 from utils import UtilsMixin
 
+
 class MorningLights(UtilsMixin, hass.Hass):
     """
     Lights controls
@@ -23,11 +24,12 @@ class MorningLights(UtilsMixin, hass.Hass):
         only turn on bedroom lamp if before sunrise
         """
         bedroom_lights_settings = [
-            (Entities.LIGHT__BEDROOM_LAMP_LEFT, 60),
+            (Entities.LIGHT__BEDROOM_LAMP_LEFT, 45),
+            (Entities.LIGHT__BEDROOM_LAMP_RIGHT, 45),
         ]
 
         downstairs_lights_settings = [
-            (Entities.LIGHT__KITCHEN_LIGHTS, 40),
+            (Entities.LIGHT__KITCHEN_LIGHTS, 100),
             (Entities.LIGHT__LIVINGROOM_LAMP, 60),
             (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, 60),
             (Entities.LIGHT__BACK_ROOM, 60),
@@ -58,7 +60,7 @@ class EveningLights(UtilsMixin, hass.Hass):
         lights_settings = [
             (Entities.LIGHT__LIVINGROOM_LAMP, 35),
             (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, 35),
-            (Entities.LIGHT__KITCHEN_LIGHTS, 15),
+            (Entities.LIGHT__KITCHEN_LIGHTS, 60),
             (Entities.LIGHT__BACK_ROOM, 35),
             (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, 30),
             (Entities.LIGHT__STAIRWAY_UPSTAIRS, 30),
@@ -84,14 +86,14 @@ class BedtimeLights(UtilsMixin, hass.Hass):
         Receive event and print log.
         """
         lights_settings = [
-            (Entities.LIGHT__KITCHEN_LIGHTS, 9),
+            (Entities.LIGHT__KITCHEN_LIGHTS, 40),
             (Entities.LIGHT__LIVINGROOM_LAMP, 35),
             (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, 25),
             (Entities.LIGHT__BACK_ROOM, 25),
             (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, 30),
             (Entities.LIGHT__STAIRWAY_UPSTAIRS, 30),
-            (Entities.LIGHT__BEDROOM_LAMP_LEFT, 35),
-            (Entities.LIGHT__BEDROOM_LAMP_RIGHT, 35),
+            (Entities.LIGHT__BEDROOM_LAMP_LEFT, 20),
+            (Entities.LIGHT__BEDROOM_LAMP_RIGHT, 20),
             (Entities.LIGHT__PATIO, 100),
         ]
 
@@ -122,7 +124,6 @@ class EverythingOff(UtilsMixin, hass.Hass):
             (Entities.LIGHT__BEDROOM_LAMP_LEFT, None),
             (Entities.LIGHT__BEDROOM_LAMP_RIGHT, None),
             (Entities.LIGHT__PATIO, None),
-
         ]
 
         # turn off radio
@@ -192,11 +193,16 @@ class PatioLightsToggle(UtilsMixin, hass.Hass):
 class FloodLightsTimer(UtilsMixin, hass.Hass):
     def initialize(self):
         # register event callback based on times
-        time_on = datetime.time(20, 0, 0)
-        time_off = datetime.time(7, 0, 0)
 
-        self.run_daily(self.turn_floodlights_on, time_on)
-        self.run_daily(self.turn_floodlights_off, time_off)
+        # based on time
+        # time_on = datetime.time(20, 0, 0)
+        # time_off = datetime.time(7, 0, 0)
+        # self.run_daily(self.turn_floodlights_on, time_on)
+        # self.run_daily(self.turn_floodlights_off, time_off)
+
+        # based on sunset/sunrise
+        self.run_at_sunset(self.turn_floodlights_on, offset=0)
+        self.run_at_sunrise(self.turn_floodlights_off, offset=0)
 
     def turn_floodlights_on(self, kwargs):
         self.turn_on(Entities.LIGHT__OUTDOOR_FLOOD_LIGHTS)

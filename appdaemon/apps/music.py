@@ -75,12 +75,6 @@ class MorningRadio(UtilsMixin, hass.Hass):
         """
         Play music in the morning.
         """
-        # self.notify("Test", title="Test")
-        self.log('---------------------------------------')
-        self.log(entity)
-        self.log(attribute)
-        self.log('---------------------------------------')
-
         speaker_settings = [
             (Entities.MEDIA_PLAYER__BEDROOM, 0.35),
             (Entities.MEDIA_PLAYER__BATHROOM, 0.25),
@@ -88,6 +82,9 @@ class MorningRadio(UtilsMixin, hass.Hass):
         ]
 
         # make sure speakers are joined
+        self.log('Joining speakers to {speaker}'.format(
+            speaker=Entities.MEDIA_PLAYER__BEDROOM
+        ))
         self.call_service(
             Services.MEDIA_PLAYER__SONOS_JOIN,
             master=Entities.MEDIA_PLAYER__BEDROOM,

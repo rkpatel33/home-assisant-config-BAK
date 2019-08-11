@@ -31,8 +31,9 @@ logger:
 # Enables the frontend
 frontend:
 
-#ios app
-ios:
+# config in home assistant cloud instead
+# ios app
+# ios:
 
 # Enables configuration UI
 config:
@@ -78,7 +79,8 @@ sensor:
 
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
 
 # Cloud
 cloud:
@@ -93,18 +95,34 @@ script: !include scripts.yaml
 # ***************************************************************************
 
 panel_iframe:
-  configurator:
-    title: Configurator
-    icon: mdi:wrench
-    url: http://hassio.local:3218
-  nodered:
-    title: Node-RED
-    icon: mdi:sitemap
-    url: http://hassio.local:1880
+  # configurator:
+  #   title: Configurator
+  #   icon: mdi:wrench
+  #   url: http://hassio.local:3218
+  # nodered:
+  #   title: Node-RED
+  #   icon: mdi:sitemap
+  #   url: http://hassio.local:1880
 #   lovelace:
 #     title: Lovelace UI
 #     icon: mdi:hexagon-outline
 #     url: http://hassio.local:8123/lovelace
+  # ***************************************************************************
+  # Cloud9 IDE
+  # ***************************************************************************
+  ide:
+    title: IDE
+    icon: mdi:code-braces
+    url: http://hassio.local:8321/
+  log_viewer:
+    title: Log viewer
+    icon: mdi:code-braces
+    url: http://hassio.local:8123/log_viewer
+  grafana:
+    title: Grafana
+    icon: mdi:chart-timeline
+    url: http://hassio.local:3000
+
 
 # ***************************************************************************
 # Pushbullet notifications
@@ -139,6 +157,9 @@ zwave:
 #   # exclude: [ 13, 14, 16, 20, 23, 72, 73, 74, 75, 76, 77, 78, 88, 89, 99]
 #   # Optional to import switches as lights - this is a list of vera device ids
 #   lights: [5]
+
+
+
 
 # ***************************************************************************
 # Nest
@@ -216,17 +237,14 @@ light:
   # Decora wifi dimmer plug
   # NOTE: will this work with homekit?
   - platform: group
-    name: Stairway lights
-    entities:
-      - light.stairway_downstairs
-      - light.stairway_upstairs
-  - platform: group
     name: Downstairs lights
     entities:
       - light.livingroom_lamp
       - light.living_room_ceiling_lights
       - light.kitchen_lights
       - light.back_room
+      - light.stairway_downstairs
+      - light.stairway_upstairs
   # Decora wifi dimmer plug
   # NOTE: will this work with homekit?
   - platform: decora_wifi
@@ -253,3 +271,15 @@ input_boolean:
     # initial: off
     icon: mdi:radio
 
+# ***************************************************************************
+# Influx DB addon
+# ***************************************************************************
+
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: Rishmonster
+  max_retries: 3
+  default_measurement: state

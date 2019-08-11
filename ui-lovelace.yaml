@@ -28,6 +28,9 @@ views:
         # #####################################################################
         # The filter card will filter entities for their state
         # #####################################################################
+      # - type: picture-elements
+      #   image: ./images/Downstairs.png
+      #   title: Home
       - type: entity-filter
         entities:
           - light.livingroom_lamp
@@ -45,7 +48,7 @@ views:
           - 'on'
         card:
           type: entities
-          title: Lights that are on
+          title: Lights that are on!!!
         # #####################################################################
         # Media player
         # #####################################################################

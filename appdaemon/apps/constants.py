@@ -55,11 +55,12 @@ class Entities:
     # DEVICE__NMAPTRACKER = 'device_tracker.d4a33d298b4b'
     DEVICE__NMAPTRACKER = 'device_tracker.rishis_iphone_xs'
     DEVICE__HA_IOSAPP = 'rishis_iphone_xs'
+    DEVICE__OWNTRACKS_RISHI = 'device_tracker.rishi_rishi_owntrack'
 
 
 class Services:
     MEDIA_PLAYER__VOLUME_SET = 'media_player/volume_set'
-    MEDIA_PLAYER__SONOS_JOIN = 'media_player/sonos_join'
+    MEDIA_PLAYER__SONOS_JOIN = 'sonos/join'
     MEDIA_PLAYER__SELECT_SOURCE = 'media_player/select_source'
     MEDIA_PLAYER__MEDIA_PLAY = 'media_player/media_play'
     MEDIA_PLAYER__MEDIA_PAUSE = 'media_player/media_pause'

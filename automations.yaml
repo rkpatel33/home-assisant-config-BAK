@@ -1,0 +1,9 @@
+- id: '1549614374242'
+  alias: TestWebhookAutomation
+  trigger:
+  - platform: webhook
+    webhook_id: test-webhook
+  condition: []
+  action:
+  - event: APP_TEST
+    event_data: {}

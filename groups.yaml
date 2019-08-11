@@ -6,6 +6,7 @@ downstairs_lights:
     - light.back_room
     - light.kitchen_lights
     - light.stairway_downstairs
+    - light.stairway_upstairs
 ceiling_lights:
   name: Ceiling lights
   entities:
@@ -14,8 +15,4 @@ ceiling_lights:
     - light.kitchen_lights
     - light.stairway_downstairs
     - light.stairway_upstairs
-hallway_lights:
-  name: Stairway lights
-  entities:
-    - light.stairway_downstairs
-    - light.stairway_upstairs
+
