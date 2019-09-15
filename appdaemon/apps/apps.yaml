@@ -1,60 +1,56 @@
 HelloWorld:
-  module: hello
+  module: applications
   class: HelloWorld
 
-Debug:
-  module: debug
-  class: Debug
-
 Restart:
-  module: system
+  module: applications
   class: Restart
 
 MorningLights:
-  module: lights
+  module: applications
   class: MorningLights
 
 BedtimeLights:
-  module: lights
+  module: applications
   class: BedtimeLights
 
 EveningLights:
-  module: lights
+  module: applications
   class: EveningLights
 
 EverythingOff:
-  module: lights
+  module: applications
   class: EverythingOff
 
 ZeroLights:
-  module: lights
+  module: applications
   class: ZeroLights
 
 FloodLightsTimer:
-  module: lights
+  module: applications
   class: FloodLightsTimer
 
 PatioLightsToggle:
-  module: lights
+  module: applications
   class: PatioLightsToggle
 
 MorningRadio:
-  module: music
+  module: applications
   class: MorningRadio
 
 LightsOnArriveHome:
-  module: presence
+  module: applications
   class: LightsOnArriveHome
 
 ReportPresence:
-  module: presence
+  module: applications
   class: ReportPresence
 
 LightsOnLightsAtSunset:
-  module: presence
+  module: applications
   class: LightsOnLightsAtSunset
 
 DewPoint:
-  module: weather
+  module: applications
   class: DewPoint
 

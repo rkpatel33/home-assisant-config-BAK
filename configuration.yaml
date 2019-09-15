@@ -270,6 +270,10 @@ input_boolean:
     name: KPCC
     # initial: off
     icon: mdi:radio
+  input_kpcc_downstairs:
+    name: KPCC Downstairs
+    # initial: off
+    icon: mdi:radio
 
 # ***************************************************************************
 # Influx DB addon

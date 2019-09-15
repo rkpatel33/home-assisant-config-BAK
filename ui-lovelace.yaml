@@ -56,6 +56,7 @@ views:
         title: Media
         entities:
           - input_boolean.input_kpcc
+          - input_boolean.input_kpcc_downstairs
         # #####################################################################
         # Scenes
         # #####################################################################
