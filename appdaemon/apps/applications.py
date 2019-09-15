@@ -12,9 +12,9 @@ from darksky import forecast
 from pushbullet import Pushbullet
 
 
-# #############################################################################
+# *****************************************************************************
 # MARK: Constants
-# #############################################################################
+# *****************************************************************************
 
 class Location:
     latitude = 33.978924
@@ -34,6 +34,7 @@ class CustomEvents:
     ZERO_LIGHTS = 'ZERO_LIGHTS'
     EVERYTHING_OFF = 'EVERYTHING_OFF'
     TOGGLE_KPCC = 'TOGGLE_KPCC'
+    TOGGLE_KPCC_DOWNSTAIRS = 'TOGGLE_KPCC_DOWNSTAIRS'
     PATIO_LIGHTS_TOGGLE = 'PATIO_LIGHTS_TOGGLE'
 
 
@@ -81,9 +82,41 @@ class Services:
     MEDIA_PLAYER__MEDIA_PAUSE = 'media_player/media_pause'
 
 
-# #############################################################################
+# *****************************************************************************
+# MARK: Utils, Convenience functions
+# *****************************************************************************
+
+class UtilsMixin(object):
+    """
+    Convenience methods for apps
+    """
+    def set_lights(self, lights_settings):
+        """
+        lights_settings: list of tuples of (entity_id, bridghtness_pct)
+        """
+        for entity_id, brightness_pct in lights_settings:
+            if brightness_pct is None:
+                self.turn_off(entity_id)
+                'Light {entity_id} off'.format(
+                    entity_id=entity_id
+                )
+            else:
+                self.turn_on(entity_id, brightness_pct=brightness_pct)
+                self.log(
+                    'Light {entity_id} to {brightness_pct}'.format(
+                        entity_id=entity_id,
+                        brightness_pct=brightness_pct
+                    )
+                )
+
+    def push_bullet(self, title, body=None):
+        pb = Pushbullet(Keys.PUSHBULLET)
+        pb.push_note(title, body)
+
+
+# *****************************************************************************
 # MARK: Debug
-# #############################################################################
+# *****************************************************************************
 
 class Debug(hass.Hass):
     """
@@ -163,27 +196,17 @@ class Debug(hass.Hass):
         #     'entity={entity} state={state}'.format(state=state, entity=None)
         # )
 
-# #############################################################################
+# *****************************************************************************
 # MARK: Hello
-# #############################################################################
+# *****************************************************************************
 
 class HelloWorld(hass.Hass):
     def initialize(self):
         self.log("Hello from AppDaemon!!!!!!!!!!!!!!!!")
 
-# #############################################################################
+# *****************************************************************************
 # MARK: Lights
-# #############################################################################
-
-"""
-Lights apps
-"""
-import datetime
-import appdaemon.plugins.hass.hassapi as hass
-
-from constants import CustomEvents, Entities, Services
-from utils import UtilsMixin
-
+# *****************************************************************************
 
 class MorningLights(UtilsMixin, hass.Hass):
     """
@@ -392,9 +415,9 @@ class FloodLightsTimer(UtilsMixin, hass.Hass):
         self.notify(title='Turned off flood lights')
 
 
-# #############################################################################
+# *****************************************************************************
 # MARK: Music
-# #############################################################################
+# *****************************************************************************
 
 class MorningRadio(UtilsMixin, hass.Hass):
     """
@@ -427,18 +450,28 @@ class MorningRadio(UtilsMixin, hass.Hass):
         # list for change in input button state
         # register event callback for on/off
         self.listen_state(
-            self.turn_on_radio,
-            Entities.INPUT_BOOLEAN__KPCC,
+            cb=self.turn_on_radio,
+            entity=Entities.INPUT_BOOLEAN__KPCC,
             new="on"
         )
 
         self.listen_state(
-            self.turn_off_radio,
-            Entities.INPUT_BOOLEAN__KPCC,
+            cb=self.turn_off_radio,
+            entity=Entities.INPUT_BOOLEAN__KPCC,
             new="off"
         )
 
         # listend for an explicit event
+        self.listen_event(
+            cb=self.radio_toggle,
+            event=CustomEvents.TOGGLE_KPCC,
+        )
+
+        self.listen_event(
+            cb=self.turn_on_radio_downstairs,
+            event=CustomEvents.TOGGLE_KPCC_DOWNSTAIRS,
+        )
+
         self.listen_event(
             self.radio_toggle,
             CustomEvents.TOGGLE_KPCC,
@@ -529,40 +562,55 @@ class MorningRadio(UtilsMixin, hass.Hass):
             entity_id=Entities.MEDIA_PLAYER__BEDROOM,
         )
 
-    def turn_on_radio_downstairs(self, entity, attribute, old, new, kwargs):
+    def turn_on_radio_downstairs(self, event_name, data, kwargs):
         """
         Play music in the morning downstairs.
         """
         speaker_settings = [
-            (Entities.MEDIA_PLAYER__LIVINGROOM, 0.20),
+            (Entities.MEDIA_PLAYER__LIVINGROOM, 0.10),
         ]
 
-        # make sure living room speaker is unjoined
-        self.log('Unjoining speakers to {speaker}'.format(
-            speaker=Entities.MEDIA_PLAYER__LIVINGROOM
-        ))
-        self.call_service(
-            Services.MEDIA_PLAYER__SONOS_UNJOIN,
-            master=Entities.MEDIA_PLAYER__LIVINGROOM,
-        )
+        state = self.get_state(Entities.MEDIA_PLAYER__LIVINGROOM)
+        self.log(dict(state=state))
 
-        # set volumes on all speakers
-        for entity_id, volume in speaker_settings:
-            self.log(
-                'Setting volume: {entity_id}={volume}'.format(
-                    entity_id=entity_id,
-                    volume=volume
-                )
+        valid_states = ['playing', 'paused']
+
+        if not state in valid_states:
+          self.notify('Sonos not in {states}, state={s}'.format(
+            states=valid_states, s=state))
+
+        if state == 'playing':
+            self.turn_off_radio(
+                Entities.MEDIA_PLAYER__LIVINGROOM, None, None, None, None
             )
+        else:
+            # make sure living room speaker is unjoined
+            self.log('Unjoining speakers to {speaker}'.format(
+                speaker=Entities.MEDIA_PLAYER__LIVINGROOM
+            ))
+
             self.call_service(
-                Services.MEDIA_PLAYER__VOLUME_SET,
-                entity_id=entity_id,
-                volume_level=volume
+                service=Services.MEDIA_PLAYER__SONOS_UNJOIN,
+                entity_id=Entities.MEDIA_PLAYER__LIVINGROOM,
             )
+
+            # set volumes on all speakers
+            for entity_id, volume in speaker_settings:
+                self.log(
+                    'Setting volume: {entity_id}={volume}'.format(
+                        entity_id=entity_id,
+                        volume=volume
+                    )
+                )
+                self.call_service(
+                    service=Services.MEDIA_PLAYER__VOLUME_SET,
+                    entity_id=entity_id,
+                    volume_level=volume
+                )
 
         # set channel
         self.call_service(
-            Services.MEDIA_PLAYER__SELECT_SOURCE,
+            service=Services.MEDIA_PLAYER__SELECT_SOURCE,
             entity_id=Entities.MEDIA_PLAYER__LIVINGROOM,
             source='KPCC'
         )
@@ -575,9 +623,9 @@ class MorningRadio(UtilsMixin, hass.Hass):
         self.log('Play KPCC downstairs')
 
 
-# #############################################################################
+# *****************************************************************************
 # MARK: Presence
-# #############################################################################
+# *****************************************************************************
 
 class ReportPresence(UtilsMixin, hass.Hass):
     """
@@ -673,9 +721,9 @@ class LightsOnLightsAtSunset(UtilsMixin, hass.Hass):
             self.set_lights(lights_settings)
 
 
-# #############################################################################
+# *****************************************************************************
 # MARK: System
-# #############################################################################
+# *****************************************************************************
 
 class Restart(hass.Hass):
     """
@@ -699,41 +747,9 @@ class Restart(hass.Hass):
             '---------------- Restart complete ----------------'
         )
 
-# #############################################################################
-# MARK: Utils, Convenience functions
-# #############################################################################
-
-class UtilsMixin(object):
-    """
-    Convenience methods for apps
-    """
-    def set_lights(self, lights_settings):
-        """
-        lights_settings: list of tuples of (entity_id, bridghtness_pct)
-        """
-        for entity_id, brightness_pct in lights_settings:
-            if brightness_pct is None:
-                self.turn_off(entity_id)
-                'Light {entity_id} off'.format(
-                    entity_id=entity_id
-                )
-            else:
-                self.turn_on(entity_id, brightness_pct=brightness_pct)
-                self.log(
-                    'Light {entity_id} to {brightness_pct}'.format(
-                        entity_id=entity_id,
-                        brightness_pct=brightness_pct
-                    )
-                )
-
-    def push_bullet(self, title, body=None):
-        pb = Pushbullet(Keys.PUSHBULLET)
-        pb.push_note(title, body)
-
-
-# #############################################################################
+# *****************************************************************************
 # MARK: Weather
-# #############################################################################
+# *****************************************************************************
 
 class DewPoint(UtilsMixin, hass.Hass):
     def initialize(self):
