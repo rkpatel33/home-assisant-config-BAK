@@ -56,6 +56,13 @@ kpcc_toggle:
       event_data:
         arg1: 22
 
+kpcc_toggle_downstairs:
+  alias: KPCC Toggle Downstairs
+  sequence:
+    - event: TOGGLE_KPCC_DOWNSTAIRS
+      event_data:
+        arg1: 22
+
 morning_lights:
   alias: Morning lights
   sequence:
