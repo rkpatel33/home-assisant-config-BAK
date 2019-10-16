@@ -13,46 +13,6 @@ from pushbullet import Pushbullet
 
 
 # *****************************************************************************
-# MARK: Light settingss
-# *****************************************************************************
-
-LIGHTS_EVENING = [
-    (Entities.LIGHT__BACK_ROOM, None),
-    (Entities.LIGHT__BEDROOM_LAMP_LEFT, 50),
-    (Entities.LIGHT__BEDROOM_LAMP_RIGHT, 50),
-    (Entities.LIGHT__KITCHEN_LIGHTS, 60),
-    (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, 35),
-    (Entities.LIGHT__LIVINGROOM_LAMP, 50),
-    (Entities.LIGHT__PATIO, 100),
-    (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, 30),
-    (Entities.LIGHT__STAIRWAY_UPSTAIRS, 30),
-]
-
-LIGHTS_BEDTIME = [
-    (Entities.LIGHT__BACK_ROOM, None),
-    (Entities.LIGHT__BEDROOM_LAMP_LEFT, 20),
-    (Entities.LIGHT__BEDROOM_LAMP_RIGHT, 20),
-    (Entities.LIGHT__KITCHEN_LIGHTS, 40),
-    (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, 25),
-    (Entities.LIGHT__LIVINGROOM_LAMP, 35),
-    (Entities.LIGHT__PATIO, 100),
-    (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, 30),
-    (Entities.LIGHT__STAIRWAY_UPSTAIRS, 30),
-]
-
-LIGHTS_EVERYTHING_OFF = [
-    (Entities.LIGHT__BACK_ROOM, None),
-    (Entities.LIGHT__BEDROOM_LAMP_LEFT, None),
-    (Entities.LIGHT__BEDROOM_LAMP_RIGHT, None),
-    (Entities.LIGHT__KITCHEN_LIGHTS, None),
-    (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, None),
-    (Entities.LIGHT__LIVINGROOM_LAMP, None),
-    (Entities.LIGHT__PATIO, None),
-    (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, None),
-    (Entities.LIGHT__STAIRWAY_UPSTAIRS, None),
-]
-
-# *****************************************************************************
 # MARK: Constants
 # *****************************************************************************
 
@@ -71,6 +31,7 @@ class CustomEvents:
     MORNING_LIGHTS = 'MORNING_LIGHTS'
     EVENING_LIGHTS = 'EVENING_LIGHTS'
     BEDTIME_LIGHTS = 'BEDTIME_LIGHTS'
+    READING_LIGHTS = 'READING_LIGHTS'
     ZERO_LIGHTS = 'ZERO_LIGHTS'
     EVERYTHING_OFF = 'EVERYTHING_OFF'
     TOGGLE_KPCC = 'TOGGLE_KPCC'
@@ -84,7 +45,7 @@ class Events:
 
 class Entities:
     # Living room
-    LIGHT__LIVINGROOM_LAMP = 'light.livingroom_lamp'
+    LIGHT__LIVINGROOM_LAMP = 'light.living_room_lamp'
     LIGHT__LIVING_ROOM_CEILING_LIGHTS = 'light.living_room_ceiling_lights'
     LIGHT__KITCHEN_LIGHTS = 'light.kitchen_lights'
     LIGHT__BACK_ROOM = 'light.back_room'
@@ -121,6 +82,70 @@ class Services:
     MEDIA_PLAYER__MEDIA_PLAY = 'media_player/media_play'
     MEDIA_PLAYER__MEDIA_PAUSE = 'media_player/media_pause'
 
+
+# *****************************************************************************
+# MARK: Light settingss
+# *****************************************************************************
+
+LIGHTS_EVENING = [
+    (Entities.LIGHT__BACK_ROOM, None),
+    (Entities.LIGHT__BEDROOM_LAMP_LEFT, 30),
+    (Entities.LIGHT__BEDROOM_LAMP_RIGHT, 30),
+    (Entities.LIGHT__KITCHEN_LIGHTS, 60),
+    (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, 35),
+    (Entities.LIGHT__LIVINGROOM_LAMP, 50),
+    # (Entities.LIGHT__PATIO, 100),
+    (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, 30),
+    (Entities.LIGHT__STAIRWAY_UPSTAIRS, 30),
+]
+
+LIGHTS_BEDTIME = [
+    (Entities.LIGHT__BACK_ROOM, None),
+    (Entities.LIGHT__BEDROOM_LAMP_LEFT, 8),
+    (Entities.LIGHT__BEDROOM_LAMP_RIGHT, 8),
+    (Entities.LIGHT__KITCHEN_LIGHTS, 40),
+    (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, 25),
+    (Entities.LIGHT__LIVINGROOM_LAMP, 35),
+    # (Entities.LIGHT__PATIO, 100),
+    (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, 25),
+    (Entities.LIGHT__STAIRWAY_UPSTAIRS, 25),
+]
+
+ZERO_LIGHTS = [
+    (Entities.LIGHT__BACK_ROOM, None),
+    (Entities.LIGHT__BEDROOM_LAMP_LEFT, 2),
+    (Entities.LIGHT__BEDROOM_LAMP_RIGHT, 2),
+    (Entities.LIGHT__KITCHEN_LIGHTS, None),
+    (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, None),
+    (Entities.LIGHT__LIVINGROOM_LAMP, 20),
+    (Entities.LIGHT__PATIO, None),
+    (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, None),
+    (Entities.LIGHT__STAIRWAY_UPSTAIRS, None),
+]
+
+LIGHTS_READING = [
+    (Entities.LIGHT__BACK_ROOM, None),
+    (Entities.LIGHT__BEDROOM_LAMP_LEFT, 40),
+    (Entities.LIGHT__BEDROOM_LAMP_RIGHT, None),
+    (Entities.LIGHT__KITCHEN_LIGHTS, None),
+    (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, None),
+    (Entities.LIGHT__LIVINGROOM_LAMP, None),
+    (Entities.LIGHT__PATIO, None),
+    (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, None),
+    (Entities.LIGHT__STAIRWAY_UPSTAIRS, None),
+]
+
+LIGHTS_EVERYTHING_OFF = [
+    (Entities.LIGHT__BACK_ROOM, None),
+    (Entities.LIGHT__BEDROOM_LAMP_LEFT, None),
+    (Entities.LIGHT__BEDROOM_LAMP_RIGHT, None),
+    (Entities.LIGHT__KITCHEN_LIGHTS, None),
+    (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, None),
+    (Entities.LIGHT__LIVINGROOM_LAMP, None),
+    (Entities.LIGHT__PATIO, None),
+    (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, None),
+    (Entities.LIGHT__STAIRWAY_UPSTAIRS, None),
+]
 
 # *****************************************************************************
 # MARK: Utils, Convenience functions
@@ -273,7 +298,7 @@ class MorningLights(UtilsMixin, hass.Hass):
             (Entities.LIGHT__LIVINGROOM_LAMP, 60),
             (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, 60),
             (Entities.LIGHT__BACK_ROOM, 60),
-            (Entities.LIGHT__LIVINGROOM_LAMP, 100),
+            (Entities.LIGHT__LIVINGROOM_LAMP, 80),
             # (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, 50),
             # (Entities.LIGHT__STAIRWAY_UPSTAIRS, 50),
         ]
@@ -322,6 +347,24 @@ class BedtimeLights(UtilsMixin, hass.Hass):
         self.notify("Turned on bedtime lights", title="Lights")
 
 
+class ReadingLights(UtilsMixin, hass.Hass):
+    def initialize(self):
+        # register event callback
+        self.listen_event(
+            self.handle_event,
+            CustomEvents.READING_LIGHTS
+        )
+
+    def handle_event(self, event_name, data, kwargs):
+        """
+        Receive event and print log.
+        """
+        lights_settings = LIGHTS_READING
+
+        self.set_lights(lights_settings)
+        self.notify("Turned on reading lights", title="Lights")
+
+
 class EverythingOff(UtilsMixin, hass.Hass):
     def initialize(self):
         # register event callback
@@ -362,17 +405,7 @@ class ZeroLights(UtilsMixin, hass.Hass):
         """
         Receive event and print log.
         """
-        lights_settings = [
-            (Entities.LIGHT__LIVINGROOM_LAMP, 20),
-            (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, None),
-            (Entities.LIGHT__KITCHEN_LIGHTS, None),
-            (Entities.LIGHT__BACK_ROOM, None),
-            (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, None),
-            (Entities.LIGHT__STAIRWAY_UPSTAIRS, None),
-            (Entities.LIGHT__BEDROOM_LAMP_LEFT, 20),
-            (Entities.LIGHT__BEDROOM_LAMP_RIGHT, 20),
-            (Entities.LIGHT__PATIO, None),
-        ]
+        lights_settings = ZERO_LIGHTS
 
         self.set_lights(lights_settings)
         # self.turn_off(Entities.LIGHT__KITCHEN_LIGHTS)
@@ -394,10 +427,10 @@ class PatioLightsToggle(UtilsMixin, hass.Hass):
         state = self.get_state(Entities.LIGHT__PATIO)
         if state == 'on':
             self.turn_off(Entities.LIGHT__PATIO)
-            self.notify("Patio lights off", title="Lights")
+            self.notify('Patio lights off', title='Lights')
         else:
             self.turn_on(Entities.LIGHT__PATIO)
-            self.notify("Patio lights on", title="Lights")
+            self.notify('Patio lights on', title='Lights')
 
 
 class FloodLightsTimer(UtilsMixin, hass.Hass):
@@ -422,7 +455,7 @@ class FloodLightsTimer(UtilsMixin, hass.Hass):
     def turn_floodlights_off(self, kwargs):
         self.turn_off(Entities.LIGHT__OUTDOOR_FLOOD_LIGHTS)
         # self.push_bullet(title='Turned off flood lights')
-        self.notify(title='Turned off flood lights')
+        self.notify('Turned off flood lights', title='Lights')
 
 
 # *****************************************************************************

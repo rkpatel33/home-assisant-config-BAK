@@ -59,6 +59,8 @@ discovery:
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
 
+system_health:
+
 # Enables support for tracking state changes over time
 history:
 

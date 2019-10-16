@@ -84,6 +84,13 @@ bedtime_lights:
       event_data:
         arg: none
 
+reading_lights:
+  alias: Reading lights
+  sequence:
+    - event: READING_LIGHTS
+      event_data:
+        arg: none
+
 zero_lights:
   alias: Zero lights
   sequence:

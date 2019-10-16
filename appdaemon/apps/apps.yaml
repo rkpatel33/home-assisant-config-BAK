@@ -14,6 +14,10 @@ BedtimeLights:
   module: applications
   class: BedtimeLights
 
+ReadingLights:
+  module: applications
+  class: ReadingLights
+
 EveningLights:
   module: applications
   class: EveningLights
