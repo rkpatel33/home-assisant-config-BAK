@@ -1,6 +1,6 @@
 1
 # Down stairs
-light.livingroom_lamp
+light.living_room_lamp
 light.living_room_ceiling_lights
 light.kitchen_lights
 light.back_room

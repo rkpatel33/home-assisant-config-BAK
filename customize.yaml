@@ -7,7 +7,7 @@ light.bedroom_lamp_left_dimmer_level:
   hidden: true
 light.living_room_dimmer_level:
   hidden: true
-light.livingroom_lamp:
+light.living_room_lamp:
   homebridge_name: Living room lamp
   homebridge_visible: true
 light.bedroom_lamp_left:

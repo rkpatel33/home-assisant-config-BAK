@@ -206,7 +206,7 @@ homekit:
     - media_player
   # include_entities:
     # - group.all_lights
-    # - light.livingroom_lamp
+    # - light.living_room_lamp
     # - light.bedroom_lamp_left
     # - light.bedroom_lamp_right
   # exclude_entities:
@@ -241,7 +241,7 @@ light:
   - platform: group
     name: Downstairs lights
     entities:
-      - light.livingroom_lamp
+      - light.living_room_lamp
       - light.living_room_ceiling_lights
       - light.kitchen_lights
       - light.back_room
