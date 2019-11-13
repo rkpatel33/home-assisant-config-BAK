@@ -531,18 +531,16 @@ class MorningRadio(UtilsMixin, hass.Hass):
 
         valid_states = ['playing', 'paused']
 
-        if not state in valid_states:
-          self.notify('Sonos not in {states}, state={s}'.format(
-            states=valid_states, s=state))
+        if state not in valid_states:
+            self.notify('Sonos not in {states}, state={s}'.format(
+                states=valid_states, s=state))
 
         if state == 'playing':
             self.turn_off_radio(
-                Entities.MEDIA_PLAYER__BEDROOM, None, None, None, None
-            )
+                Entities.MEDIA_PLAYER__BEDROOM, None, None, None, None)
         if state == 'paused':
             self.turn_on_radio(
-                Entities.MEDIA_PLAYER__BEDROOM, None, None, None, None
-            )
+                Entities.MEDIA_PLAYER__BEDROOM, None, None, None, None)
 
     def turn_on_radio(self, entity, attribute, old, new, kwargs):
         """
@@ -551,8 +549,8 @@ class MorningRadio(UtilsMixin, hass.Hass):
         self.log('Turned KPCC ON')
 
         speaker_settings = [
-            (Entities.MEDIA_PLAYER__BEDROOM, 0.35),
-            (Entities.MEDIA_PLAYER__BATHROOM, 0.25),
+            (Entities.MEDIA_PLAYER__BEDROOM, 0.25),
+            (Entities.MEDIA_PLAYER__BATHROOM, 0.15),
             (Entities.MEDIA_PLAYER__LIVINGROOM, 0.20),
         ]
 
