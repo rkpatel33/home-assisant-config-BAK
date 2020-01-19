@@ -6,6 +6,10 @@ Restart:
   module: applications
   class: Restart
 
+Debug:
+  module: applications
+  class: Debug
+
 MorningLights:
   module: applications
   class: MorningLights

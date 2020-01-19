@@ -27,7 +27,7 @@ class Keys:
 
 
 class CustomEvents:
-    TEST_APP = 'APP_TEST'
+    APP_TEST = 'APP_TEST'
     MORNING_LIGHTS = 'MORNING_LIGHTS'
     EVENING_LIGHTS = 'EVENING_LIGHTS'
     BEDTIME_LIGHTS = 'BEDTIME_LIGHTS'
@@ -68,10 +68,9 @@ class Entities:
     INPUT_BOOLEAN__KPCC = 'input_boolean.input_kpcc'
     INPUT_BOOLEAN__KPCC_DOWNSTAIRS = 'input_boolean.input_kpcc_downstairs'
     # Deivces
-    # DEVICE__NMAPTRACKER = 'device_tracker.d4a33d298b4b'
-    DEVICE__NMAPTRACKER = 'device_tracker.rishis_iphone_xs'
-    DEVICE__HA_IOSAPP = 'rishis_iphone_xs'
-    DEVICE__OWNTRACKS_RISHI = 'device_tracker.rishi_rishi_owntrack'
+    DEVICE__NMAPTRACKER = 'device_tracker.rishi_s_iphone_11_2'
+    DEVICE__HA_IOSAPP = ' rishi_s_iphone_11_2'
+    DEVICE__OWNTRACKS_RISHI = 'device_tracker.rishi_rishi_owntracks_2'
 
 
 class Services:
@@ -93,7 +92,7 @@ LIGHTS_EVENING = [
     (Entities.LIGHT__BEDROOM_LAMP_RIGHT, 30),
     (Entities.LIGHT__KITCHEN_LIGHTS, 60),
     (Entities.LIGHT__LIVING_ROOM_CEILING_LIGHTS, 35),
-    (Entities.LIGHT__LIVINGROOM_LAMP, 50),
+    (Entities.LIGHT__LIVINGROOM_LAMP, 70),
     # (Entities.LIGHT__PATIO, 100),
     (Entities.LIGHT__STAIRWAY_DOWNSTAIRS, 30),
     (Entities.LIGHT__STAIRWAY_UPSTAIRS, 30),
@@ -151,6 +150,7 @@ LIGHTS_EVERYTHING_OFF = [
 # MARK: Utils, Convenience functions
 # *****************************************************************************
 
+
 class UtilsMixin(object):
     """
     Convenience methods for apps
@@ -174,7 +174,7 @@ class UtilsMixin(object):
                     )
                 )
 
-    def push_bullet(self, title, body=None):
+    def push_bullet(self, body=None, title=None):
         pb = Pushbullet(Keys.PUSHBULLET)
         pb.push_note(title, body)
 
@@ -183,7 +183,7 @@ class UtilsMixin(object):
 # MARK: Debug
 # *****************************************************************************
 
-class Debug(hass.Hass):
+class Debug(UtilsMixin, hass.Hass):
     """
     Debugging app for testing purposes.
     """
@@ -191,7 +191,7 @@ class Debug(hass.Hass):
         # register callback
         self.listen_event(
             self.handle_test_event,
-            event=CustomEvents.TEST_APP
+            event=CustomEvents.APP_TEST
         )
 
         self.listen_state(
@@ -199,7 +199,7 @@ class Debug(hass.Hass):
             entity=Entities.DEVICE__OWNTRACKS_RISHI
         )
 
-    def handle_owntracks_event(self, event_name, data, kwargs):
+    def handle_owntracks_event(self, event_name, data, **kwargs):
         # get single entity state
         entity = Entities.DEVICE__OWNTRACKS_RISHI
         state = self.get_state(entity=entity, attribute='all')
@@ -212,19 +212,11 @@ class Debug(hass.Hass):
         """
         Receive event and print log.
         """
-        pb = Pushbullet(Keys.PUSHBULLET)
-
         self.log('Triggered event={event_name}'.format(event_name=event_name))
-        # self.log('------------------------------------------------')
-        # self.log(event_name)
-        # self.log(data)
-        # self.log(kwargs)
-        # self.log('------------------------------------------------')
 
         # notifications
-        # self.log('Success!')
-        # self.notify('Success!')
-        # pb.push_note('Success!', None)
+        self.log('sending notification')
+        self.push_bullet('Success!')
 
         start = timer()
 
@@ -235,8 +227,7 @@ class Debug(hass.Hass):
         self.log(
             'entity={entity} state={state}'.format(state=state, entity=entity)
         )
-        # pb.push_note('Success!', None)
-        # self.notify(
+
         #     "Entities.DEVICE__OWNTRACKS_RISHI state={state}",
         #     title="Lights"
         # )
@@ -267,11 +258,12 @@ class Debug(hass.Hass):
 
 class HelloWorld(hass.Hass):
     def initialize(self):
-        self.log("Hello from AppDaemon!!!!!!!!!!!!!!!!")
+        self.log("-------------- Hello world! --------------")
 
 # *****************************************************************************
 # MARK: Lights
 # *****************************************************************************
+
 
 class MorningLights(UtilsMixin, hass.Hass):
     """
@@ -308,7 +300,7 @@ class MorningLights(UtilsMixin, hass.Hass):
         if self.datetime() < self.sunrise():
             self.set_lights(bedroom_lights_settings)
 
-        self.notify("Turned on morning lights", title="Lights")
+        self.push_bullet("Turned on morning lights")
 
 
 class EveningLights(UtilsMixin, hass.Hass):
@@ -326,7 +318,7 @@ class EveningLights(UtilsMixin, hass.Hass):
         lights_settings = LIGHTS_EVENING
 
         self.set_lights(lights_settings)
-        self.notify("Turned on evening lights", title="Lights")
+        self.push_bullet("Turned on evening lights")
 
 
 class BedtimeLights(UtilsMixin, hass.Hass):
@@ -344,7 +336,7 @@ class BedtimeLights(UtilsMixin, hass.Hass):
         lights_settings = LIGHTS_BEDTIME
 
         self.set_lights(lights_settings)
-        self.notify("Turned on bedtime lights", title="Lights")
+        self.push_bullet("Turned on bedtime lights")
 
 
 class ReadingLights(UtilsMixin, hass.Hass):
@@ -362,7 +354,7 @@ class ReadingLights(UtilsMixin, hass.Hass):
         lights_settings = LIGHTS_READING
 
         self.set_lights(lights_settings)
-        self.notify("Turned on reading lights", title="Lights")
+        self.push_bullet("Turned on reading lights")
 
 
 class EverythingOff(UtilsMixin, hass.Hass):
@@ -390,7 +382,7 @@ class EverythingOff(UtilsMixin, hass.Hass):
             self.turn_off(entity)
 
         # turn off patio light switch
-        self.notify("Turned off all lights", title="Lights")
+        self.push_bullet("Turned off all lights")
 
 
 class ZeroLights(UtilsMixin, hass.Hass):
@@ -409,7 +401,7 @@ class ZeroLights(UtilsMixin, hass.Hass):
 
         self.set_lights(lights_settings)
         # self.turn_off(Entities.LIGHT__KITCHEN_LIGHTS)
-        self.notify("Set lights to zero", title="Lights")
+        self.push_bullet("Set lights to zero")
 
 
 class PatioLightsToggle(UtilsMixin, hass.Hass):
@@ -427,10 +419,10 @@ class PatioLightsToggle(UtilsMixin, hass.Hass):
         state = self.get_state(Entities.LIGHT__PATIO)
         if state == 'on':
             self.turn_off(Entities.LIGHT__PATIO)
-            self.notify('Patio lights off', title='Lights')
+            self.push_bullet('Patio lights off')
         else:
             self.turn_on(Entities.LIGHT__PATIO)
-            self.notify('Patio lights on', title='Lights')
+            self.push_bullet('Patio lights on')
 
 
 class FloodLightsTimer(UtilsMixin, hass.Hass):
@@ -449,13 +441,13 @@ class FloodLightsTimer(UtilsMixin, hass.Hass):
 
     def turn_floodlights_on(self, kwargs):
         self.turn_on(Entities.LIGHT__OUTDOOR_FLOOD_LIGHTS)
-        # self.push_bullet(title='Turned on flood lights')
-        self.notify(title='Turned on flood lights')
+        # self.turn_on(Entities.LIGHT__PATIO)
+        self.push_bullet('Turned on flood lights')
 
     def turn_floodlights_off(self, kwargs):
         self.turn_off(Entities.LIGHT__OUTDOOR_FLOOD_LIGHTS)
-        # self.push_bullet(title='Turned off flood lights')
-        self.notify('Turned off flood lights', title='Lights')
+        # self.turn_off(Entities.LIGHT__PATIO)
+        self.push_bullet('Turned off flood lights')
 
 
 # *****************************************************************************
@@ -532,7 +524,7 @@ class MorningRadio(UtilsMixin, hass.Hass):
         valid_states = ['playing', 'paused']
 
         if state not in valid_states:
-            self.notify('Sonos not in {states}, state={s}'.format(
+            self.push_bullet('Sonos not in {states}, state={s}'.format(
                 states=valid_states, s=state))
 
         if state == 'playing':
@@ -549,7 +541,7 @@ class MorningRadio(UtilsMixin, hass.Hass):
         self.log('Turned KPCC ON')
 
         speaker_settings = [
-            (Entities.MEDIA_PLAYER__BEDROOM, 0.25),
+            (Entities.MEDIA_PLAYER__BEDROOM, 0.20),
             (Entities.MEDIA_PLAYER__BATHROOM, 0.15),
             (Entities.MEDIA_PLAYER__LIVINGROOM, 0.20),
         ]
@@ -617,7 +609,7 @@ class MorningRadio(UtilsMixin, hass.Hass):
         valid_states = ['playing', 'paused']
 
         if not state in valid_states:
-          self.notify('Sonos not in {states}, state={s}'.format(
+          self.push_bullet('Sonos not in {states}, state={s}'.format(
             states=valid_states, s=state))
 
         if state == 'playing':
@@ -682,6 +674,12 @@ class ReportPresence(UtilsMixin, hass.Hass):
 
         self.listen_state(
             self.notify_presence_change,
+            Entities.DEVICE__OWNTRACKS_RISHI,
+            attribute="state",
+        )
+
+        self.listen_state(
+            self.notify_presence_change,
             Entities.DEVICE__NMAPTRACKER,
             attribute="state",
         )
@@ -696,7 +694,7 @@ class ReportPresence(UtilsMixin, hass.Hass):
 
         if old != new:
             self.log(log_message)
-            self.notify(log_message)
+            self.push_bullet(log_message)
 
 
 class LightsOnArriveHome(UtilsMixin, hass.Hass):
@@ -728,7 +726,7 @@ class LightsOnArriveHome(UtilsMixin, hass.Hass):
             # turn on after sunset
             if self.sun_down():
                 self.log('Turning on lights when you arrive after sunset')
-                self.notify(
+                self.push_bullet(
                     'Turning on lamp and patio lights',
                     title="Lights"
                 )
@@ -766,9 +764,9 @@ class LightsOnLightsAtSunset(UtilsMixin, hass.Hass):
 # MARK: System
 # *****************************************************************************
 
-class Restart(hass.Hass):
+class Restart(UtilsMixin, hass.Hass):
     """
-    Lights controls
+    Restart notifications
     """
     def initialize(self):
         # register event callback
@@ -782,11 +780,12 @@ class Restart(hass.Hass):
         )
 
     def handle_event(self, event_name, data, kwargs):
-        self.notify("Restart complete", title="App Daemon")
+        self.push_bullet("Restart complete", title="App Daemon")
 
         self.log(
             '---------------- Restart complete ----------------'
         )
+
 
 # *****************************************************************************
 # MARK: Weather
@@ -813,18 +812,13 @@ class DewPoint(UtilsMixin, hass.Hass):
         # data = r.json()
         # first_light = data['results']['civil_twilight_begin']
         # d = datetime.strptime(first_light)
+
         dew_point = round(weather.daily[0].dewPoint, 1)
         temp_low = round(weather.daily[0].temperatureLow, 1)
         margin = round(temp_low - dew_point, 1)
-        self.log(weather.temperature)
-        self.log(dew_point)
-        self.log(temp_low)
 
-        message = 'Dew Point={dew_point}°, Low={temp_low}°, Margin={margin}°'.format(
-            dew_point=dew_point,
-            temp_low=temp_low,
-            margin=margin,
-        )
-
+        message = f'Dew Point={dew_point}°, Low={temp_low}°, Margin={margin}°'
         self.log(message)
-        self.push_bullet(message)
+
+        if margin < 5:
+            self.push_bullet(message, title='Dewpoint margin low tonight')

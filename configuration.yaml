@@ -31,9 +31,11 @@ logger:
 # Enables the frontend
 frontend:
 
+default_config:
+
 # config in home assistant cloud instead
 # ios app
-# ios:
+ios:
 
 # Enables configuration UI
 config:
@@ -116,20 +118,27 @@ panel_iframe:
     title: IDE
     icon: mdi:code-braces
     url: http://hassio.local:8321/
-  log_viewer:
-    title: Log viewer
-    icon: mdi:code-braces
-    url: http://hassio.local:8123/log_viewer
+  # REMOVE
+  # log_viewer:
+  #   title: Log viewer Panel
+  #   icon: mdi:code-braces
+  #   url: http://hassio.local:8123/log_viewer
   grafana:
     title: Grafana
     icon: mdi:chart-timeline
     url: http://hassio.local:3000
 
+# ***************************************************************************
+# Mobile app
+# ***************************************************************************
+
+mobile_app:
 
 # ***************************************************************************
 # Pushbullet notifications
 # https://www.home-assistant.io/components/notify.pushbullet/
 # ***************************************************************************
+
 notify:
   # optional name for multiple services
   - platform: pushbullet
@@ -138,14 +147,28 @@ notify:
     api_key: !secret pushbullet_token
 
 # ***************************************************************************
+# Dyson
+# ***************************************************************************
+
+dyson:
+  username: mail@rishinyc.com
+  password: Mammadaag34
+  language: US
+  # devices:
+  #   - device_id: F8F-US-MMA0115A # e.g., Serial number: XXX-XX-XXXXXXXX
+  #     device_ip: 192.168.7.144
+
+# ***************************************************************************
 # MQTT - for triggering and communicating with node-red flows
 # ***************************************************************************
+
 mqtt:
   broker: core-mosquitto
 
 # ***************************************************************************
 # Aeotec z-wave usb stick
 # ***************************************************************************
+
 zwave:
   usb_path: /dev/ttyACM0
   debug: true
@@ -153,6 +176,7 @@ zwave:
 # ***************************************************************************
 # https://www.home-assistant.io/components/vera/
 # ***************************************************************************
+
 # vera:
 #   vera_controller_url: http://192.168.7.186:3480/
 #   # Optional to exclude devices - this is a list of vera device ids
@@ -215,6 +239,7 @@ homekit:
 # ***************************************************************************
 # presence based on router network presence
 # ***************************************************************************
+
 device_tracker:
   - platform: nmap_tracker
     # iphone 7
@@ -230,6 +255,7 @@ device_tracker:
 # ***************************************************************************
 # grouped lights
 # ***************************************************************************
+
 light:
   - platform: group
     name: Bedroom lights
@@ -256,6 +282,7 @@ light:
 # ***************************************************************************
 # Exposes shell command service shell_command.reset_homekit
 # ***************************************************************************
+
 shell_command:
   reset_homekit: rm /config/.homekit.state
 
@@ -263,6 +290,7 @@ shell_command:
 # ***************************************************************************
 # Fake switches for app daemon scripts
 # ***************************************************************************
+
 input_boolean:
   test_input:
     name: Test input
