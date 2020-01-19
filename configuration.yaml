@@ -17,13 +17,12 @@ homeassistant:
 # https://www.home-assistant.io/components/logger/
 logger:
   # default: debug
-  # default: info
   default: info
   logs:
     homeassistant.components.mqtt: debug
     homeassistant.components.homekit: debug
-    pyhap: debug
     homeassistant.components.zwave: info
+    # pyhap: debug
 
 # Show links to resources in log and frontend
 # introduction:
@@ -153,7 +152,7 @@ notify:
 dyson:
   username: mail@rishinyc.com
   password: Mammadaag34
-  language: US
+  language: GB
   # devices:
   #   - device_id: F8F-US-MMA0115A # e.g., Serial number: XXX-XX-XXXXXXXX
   #     device_ip: 192.168.7.144
